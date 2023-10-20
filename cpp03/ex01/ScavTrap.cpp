@@ -26,11 +26,11 @@ void ScavTrap::attack(const std::string & name)
         std::cout << "I can't find that power inside of me :(" << std::endl;
         return ;
     }
-	std::cout << "ScavTrap " << this->name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
+	std::cout << "ScavTrap " << this->_name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
 	this->energyPoints--;
 }
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode." << std::endl;
+	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode." << std::endl;
 }

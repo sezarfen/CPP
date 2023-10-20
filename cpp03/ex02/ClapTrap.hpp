@@ -9,7 +9,7 @@
 
 class ClapTrap {
 protected:
-    std::string name;
+    std::string _name;
     int hitPoints; // represents the health of the ClapTrap
     int energyPoints;
     int attackDamage;

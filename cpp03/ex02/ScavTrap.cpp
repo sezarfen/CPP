@@ -11,7 +11,7 @@ ScavTrap::ScavTrap(std::string name)
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
-	std::cout << "ScavTrap std::string constructor called" << std::endl;
+	std::cout << "ScavTrap std::string constructor called by " << this->_name << std::endl;
 }
 
 ScavTrap::~ScavTrap()
@@ -26,11 +26,11 @@ void ScavTrap::attack(const std::string & name)
         std::cout << "I can't find that power inside of me :(" << std::endl;
         return ;
     }
-	std::cout << "ScavTrap " << this->name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
+	std::cout << "ScavTrap " << this->_name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
 	this->energyPoints--;
 }
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode." << std::endl;
+	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode." << std::endl;
 }

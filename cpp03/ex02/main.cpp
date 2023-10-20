@@ -1,13 +1,22 @@
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap scav(">The new Scav<");
+	FragTrap fragTrap("FragTrap1");
+	ScavTrap scavTrap("FragTrap1");
 
-	scav.attack("The Entity");
+	fragTrap.attack("enemy1");
+	scavTrap.attack("enemy2");
+	
+	fragTrap.highFivesGuys();
+	scavTrap.guardGate();
 
-	scav.guardGate();
-	scav.printInfo();
+	fragTrap.beRepaired(30);
+	scavTrap.beRepaired(20);
+
+	fragTrap.printInfo();
+	scavTrap.printInfo();
 
 	return (0);
 }

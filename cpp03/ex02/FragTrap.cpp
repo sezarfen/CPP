@@ -12,7 +12,7 @@ FragTrap::FragTrap(std::string name)
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
-	std::cout << "FragTrap std::string constructor called" << std::endl;
+	std::cout << "FragTrap std::string constructor called by " << this->_name << std::endl;
 }
 
 FragTrap::~FragTrap()
@@ -27,7 +27,7 @@ void FragTrap::attack(const std::string & name)
         std::cout << "I can't find that power inside of me :(" << std::endl;
         return ;
     }
-	std::cout << "FragTrap " << this->name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
+	std::cout << "FragTrap " << this->_name << " attacked to " << name << " given " << attackDamage << " damage" << std::endl;
 	this->energyPoints--;
 }
 
