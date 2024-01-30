@@ -6,7 +6,7 @@ int	checkPhoneNumber(std::string phoneNumber)
 
 	while (phoneNumber[i])
 	{
-		if (!isdigit(phoneNumber[i]))
+		if (!isdigit(phoneNumber[i]) && phoneNumber[i] != ' ')
 			return (0);
 		i++;
 	}
@@ -22,10 +22,10 @@ void	addingProcess(PhoneBook pb)
 	std::string darkestSecret;
 
 	std::cout << "Ahhh.. what a great choice!" << std::endl;
-	std::cout << "***************" << std::endl;
+	std::cout << "***************";
 	
 	// Taking inputs from user
-	std::cout << "Please enter a first name for contact : ";
+	std::cout << std::endl << "Please enter a first name for contact : ";
 	getline(std::cin, firstName);
 	std::cout << std::endl << "Please enter a last name for contact : ";
 	getline(std::cin, lastName);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 	while (true)
 	{
 		std::cout << "Your command : ";
-		std::cin >> command;
+		getline(std::cin, command);
 
 		if (command.compare("ADD") == 0)
 			addingProcess(pb);
