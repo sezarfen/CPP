@@ -18,11 +18,11 @@ class Contact
 			std::string nickName, std::string phoneNumber,
 			std::string darkestSecret);
 
-		std::string getFirstName();
-		std::string getLastName();
-		std::string getNickName();
-		std::string getPhoneNumber();
-		std::string getDarkestSecret();
+		std::string getFirstName( void );
+		std::string getLastName( void );
+		std::string getNickName( void );
+		std::string getPhoneNumber( void );
+		std::string getDarkestSecret( void );
 
 };
 

@@ -9,10 +9,8 @@ Contact::Contact(std::string firstName, std::string lastName,
 			std::string nickName, std::string phoneNumber,
 			std::string darkestSecret) : firstName(firstName),
 			lastName(lastName), nickName(nickName), phoneNumber(phoneNumber),
-			darkestSecret(darkestSecret)
-{
-
-}
+			darkestSecret(darkestSecret) 
+			{}
 
 std::string Contact::getFirstName()
 {

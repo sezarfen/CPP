@@ -48,6 +48,7 @@ void	addingProcess(PhoneBook pb)
 void	searchingProcess(PhoneBook pb)
 {
 	int size = pb.getTotalContact();
+	std::cout << "Number of elements here is " << size << std::endl; 
 
 	for (int i = 0; i <= size; i++)
 	{

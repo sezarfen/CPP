@@ -19,6 +19,7 @@ void PhoneBook::addContact(std::string firstName, std::string lastName,
 	std::string nickName, std::string phoneNumber, std::string darkestSecret)
 {
 	Contact newContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+	std::cout << "New contact adding operation" << std::endl;
 	this->contacts[this->current] = newContact;
 	this->current = (this->current + 1) % 8;
 	if (this->totalContact < 8) // it will stop, when we reach to 8
