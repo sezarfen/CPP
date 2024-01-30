@@ -13,7 +13,7 @@ int	checkPhoneNumber(std::string phoneNumber)
 	return (1);
 }
 
-void	addingProcess(PhoneBook pb)
+void	addingProcess(PhoneBook &pb)
 {
 	std::string firstName;
 	std::string lastName;
@@ -45,12 +45,11 @@ void	addingProcess(PhoneBook pb)
 	pb.addContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
 }
 
-void	searchingProcess(PhoneBook pb)
+void	searchingProcess(PhoneBook &pb)
 {
 	int size = pb.getTotalContact();
-	std::cout << "Number of elements here is " << size << std::endl; 
 
-	for (int i = 0; i <= size; i++)
+	for (int i = 0; i < size; i++) // Bu kısım deneme amaçlıdır | column şekline çevrilmedilir kurallara uygun olması için
 	{
 		Contact c = pb.getContactByIndex(i);
 		std::cout << "FirstName : " << c.getFirstName() << std::endl;
