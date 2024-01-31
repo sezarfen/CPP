@@ -23,7 +23,6 @@ class Contact
 		std::string getNickName( void );
 		std::string getPhoneNumber( void );
 		std::string getDarkestSecret( void );
-
 };
 
 #endif /* end of CONTACT_HPP */

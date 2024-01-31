@@ -1,4 +1,6 @@
 #include "PhoneBook.hpp"
+#include <iomanip>
+#include <iostream>
 
 int	checkPhoneNumber(std::string phoneNumber)
 {
@@ -45,18 +47,44 @@ void	addingProcess(PhoneBook &pb)
 	pb.addContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
 }
 
+void	checkAndWrite(std::string text)
+{
+	if (text.length() > 9)
+		std::cout << std::setw(10) << text.substr(0, 9) + ".";
+	else
+		std::cout << std::setw(10) << text;
+}
+
 void	searchingProcess(PhoneBook &pb)
 {
 	int size = pb.getTotalContact();
+	std::string choose;
 
 	for (int i = 0; i < size; i++) // Bu kısım deneme amaçlıdır | column şekline çevrilmedilir kurallara uygun olması için
 	{
 		Contact c = pb.getContactByIndex(i);
-		std::cout << "FirstName : " << c.getFirstName() << std::endl;
-		std::cout << "LastName : " << c.getLastName() << std::endl;
-		std::cout << "NickName : " << c.getNickName() << std::endl;
-		std::cout << "PhoneNumber : " << c.getPhoneNumber() << std::endl;
-		std::cout << "DarkestSecret : " << c.getDarkestSecret() << std::endl;
+
+		std::cout << std::setw(10) << i << "|";
+		checkAndWrite(c.getFirstName());
+		std::cout << "|";
+		checkAndWrite(c.getLastName());
+		std::cout << "|";
+		checkAndWrite(c.getNickName());
+		std::cout << "|" << std::endl;
+	}
+	std::cout << "Please choose an index to see more informations individually : ";
+	getline(std::cin, choose);
+	int ch = stoi(choose);
+	if (ch >= size)
+		std::cout << "We don't have that much Contact right now :( " << std::endl; 
+	else
+	{
+		Contact c = pb.getContactByIndex(ch);
+		std::cout << "First Name: " << c.getFirstName() << std::endl;
+		std::cout << "Last Name:" << c.getLastName() << std::endl;
+		std::cout << "Nick Name:" << c.getNickName() << std::endl;
+		std::cout << "Phone Number:" << c.getPhoneNumber() << std::endl;
+		std::cout << "Darkest Secret:" << c.getDarkestSecret() << std::endl;
 	}
 }
 
@@ -69,7 +97,7 @@ int main(int argc, char *argv[])
 
 	while (true)
 	{
-		std::cout << "Your command : ";
+		std::cout << "Your command :";
 		getline(std::cin, command);
 
 		if (command.compare("ADD") == 0)
