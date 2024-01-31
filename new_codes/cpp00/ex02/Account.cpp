@@ -1,7 +1,10 @@
 #include "Account.hpp"
 #include <iostream>
-// Account index için ne demek gerekiyor?
+#include <iomanip>
+
 // HEPSININ BAŞINDA BİR DE TIMESTAMP YAZDIRMA FONKSİYONU EKLEYEBİLİRİZ
+
+// CONSTRUCTORS AND DESTRUCTORS
 
 Account::Account( int initial_deposit )
 {
@@ -27,14 +30,14 @@ Account::Account( void )
 	std::cout << "index:" << this->_accountIndex << ";amount:" << this->_amount << "created" << std::endl;
 }
 
-void Account::displayAccountsInfos()
+Account::~Account()
 {
-	std::cout << "accounts:" << Account::_nbAccounts << ";";
-	std::cout << "total:" << Account::_totalAmount << ";";
-	std::cout << "deposits:" << Account::_totalNbDeposits << ";";
-	std::cout << "withdrawals:" << Account::_totalNbWithdrawals;
+	std::cout << "index:" << this->_accountIndex << ";";
+	std::cout <<  "amount:" << this->_amount << ";";
+	std::cout << "closed";
 	std::cout << std::endl;
 }
+
 // class üzerinde değişiklik yapamıyor olması lazım const sayesinde, sadece bilgilere erişebiliyor
 void Account::displayStatus() const
 {
@@ -62,7 +65,13 @@ void	Account::makeDeposit( int deposit )
 bool	Account::makeWithdrawal( int withdrawal )
 {
 	if (withdrawal > this->_amount)
+	{
+		std::cout << "index:" << this->_accountIndex << ";";
+		std::cout << "p_amount:" << this->_amount<< ";";
+		std::cout << "withdrawal:refused";
+		std::cout << std::endl;
 		return (false);
+	}
 	this->_amount -= withdrawal;
 	this->_nbWithdrawals++;
 	Account::_totalNbWithdrawals--;
@@ -74,4 +83,49 @@ bool	Account::makeWithdrawal( int withdrawal )
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "nb_withdrawals:" << this->_nbDeposits;
 	std::cout << std::endl;
+	return (true);
+}
+
+int	Account::checkAmount() const
+{
+	return (this->_amount);
+}
+
+// STATIC MEMBER FUNCTIONS
+
+void Account::displayAccountsInfos()
+{
+	std::cout << "accounts:" << Account::_nbAccounts << ";";
+	std::cout << "total:" << Account::_totalAmount << ";";
+	std::cout << "deposits:" << Account::_totalNbDeposits << ";";
+	std::cout << "withdrawals:" << Account::_totalNbWithdrawals;
+	std::cout << std::endl;
+}
+
+int	Account::getNbAccounts()
+{
+	return (Account::_nbAccounts);
+}
+
+int Account::getTotalAmount()
+{
+	return (Account::_totalAmount);
+}
+
+int Account::getNbDeposits()
+{
+	return (Account::_totalNbDeposits);
+}
+
+int Account::getNbWithdrawals()
+{
+	return (Account::_totalNbWithdrawals);
+}
+
+void	Account::_displayTimestamp(void)
+{
+	std::time_t	now;
+
+	now = std::time(NULL);
+	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
 }
