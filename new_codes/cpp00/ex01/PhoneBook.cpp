@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : totalContact(0), current(0)
+PhoneBook::PhoneBook() : current(0), totalContact(0) 
 {
 	// this->totalContact = 0;
 }

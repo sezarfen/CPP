@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 int	checkPhoneNumber(std::string phoneNumber)
 {
@@ -74,7 +75,11 @@ void	searchingProcess(PhoneBook &pb)
 	}
 	std::cout << "Please choose an index to see more informations individually : ";
 	getline(std::cin, choose);
-	int ch = stoi(choose);
+	// to convert string to int in c++
+	int ch = 0;
+	std::istringstream iss(choose);
+	iss >> ch;
+	// end of converting process
 	if (ch >= size)
 		std::cout << "We don't have that much Contact right now :( " << std::endl; 
 	else
@@ -88,7 +93,7 @@ void	searchingProcess(PhoneBook &pb)
 	}
 }
 
-int main(int argc, char *argv[])
+int main( void )
 {
 	std::cout << "Hello and welcome to the PhoneBook the one of the greatest technology from 80s!" << std::endl;
 	std::cout << "Now we are entering the magical world of the PhoneBook, if you are ready please write your command!" << std::endl;
