@@ -1,5 +1,6 @@
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
 #include <iomanip>
 
 // HEPSININ BAŞINDA BİR DE TIMESTAMP YAZDIRMA FONKSİYONU EKLEYEBİLİRİZ
@@ -46,12 +47,17 @@ int Account::getNbWithdrawals()
 	return (Account::_totalNbWithdrawals);
 }
 
-void	Account::_displayTimestamp(void)
-{
-	std::time_t	now;
+void Account::_displayTimestamp(){
+    std::time_t result = std::time(NULL);
 
-	now = std::time(NULL);
-	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
+    std::cout << std::setfill('0') <<"[" << 1900 + std::localtime(&result)->tm_year
+                << std::setw(2) << 1 + std::localtime(&result)->tm_mon
+                <<  std::setw(2) << std::localtime(&result)->tm_mday
+                <<  "_"
+                <<  std::setw(2) << std::localtime(&result)->tm_hour
+                <<  std::setw(2) << std::localtime(&result)->tm_min
+                <<  std::setw(2) << std::localtime(&result)->tm_sec 
+                << "] " << std::flush;
 }
 // CONSTRUCTORS AND DESTRUCTORS
 
