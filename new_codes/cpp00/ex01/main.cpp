@@ -94,12 +94,10 @@ int main(int argc, char *argv[])
 	std::cout << "Now we are entering the magical world of the PhoneBook, if you are ready please write your command!" << std::endl;
 	std::string command;
 	PhoneBook pb;
-
-	while (true)
+	
+	std::cout << "Your command :";
+	while (getline(std::cin, command))
 	{
-		std::cout << "Your command :";
-		getline(std::cin, command);
-
 		if (command.compare("ADD") == 0)
 			addingProcess(pb);
 		else if (command.compare("SEARCH") == 0)
@@ -108,6 +106,7 @@ int main(int argc, char *argv[])
 			break;
 		else
 			std::cout << "Command not found, please try again!" << std::endl;
+		std::cout << "Your command :";
 	}
 	std::cout << "Thank you for using PhoneBook, see you again." << std::endl;
 	return (0);
