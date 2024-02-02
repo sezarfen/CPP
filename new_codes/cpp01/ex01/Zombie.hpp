@@ -9,15 +9,14 @@ class Zombie
         std::string name;
 
     public:
+        Zombie( void );
         Zombie(std::string name);
         ~Zombie( void );
         void    announce( void );
+        void    setName( std::string );
 };
 
-// newZombie.cpp
-Zombie *newZombie( std::string name );
-
-// randomChump.cpp
-void randomChump( std::string name );
+// zombieHorde.cpp
+Zombie *zombieHorde( int N, std::string name );
 
 #endif /* ZOMBIE_HPP */
