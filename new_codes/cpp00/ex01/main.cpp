@@ -75,6 +75,11 @@ void	searchingProcess(PhoneBook &pb)
 	}
 	std::cout << "Please choose an index to see more informations individually : ";
 	getline(std::cin, choose);
+	if (checkPhoneNumber(choose) == 0)
+	{
+		std::cout << "please choose an correct index next time" << std::endl;
+		return ;
+	}
 	// to convert string to int in c++
 	int ch = 0;
 	std::istringstream iss(choose);
