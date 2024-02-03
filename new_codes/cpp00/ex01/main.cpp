@@ -61,7 +61,7 @@ void	searchingProcess(PhoneBook &pb)
 	int size = pb.getTotalContact();
 	std::string choose;
 
-	for (int i = 0; i < size; i++) // Bu kısım deneme amaçlıdır | column şekline çevrilmedilir kurallara uygun olması için
+	for (int i = 0; i < size; i++)
 	{
 		Contact c = pb.getContactByIndex(i);
 

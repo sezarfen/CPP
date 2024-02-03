@@ -3,8 +3,6 @@
 #include <ctime>
 #include <iomanip>
 
-// HEPSININ BAŞINDA BİR DE TIMESTAMP YAZDIRMA FONKSİYONU EKLEYEBİLİRİZ
-
 // initializing static variables
 
 int	Account::_nbAccounts = 0;
@@ -96,7 +94,6 @@ Account::~Account()
 	std::cout << std::endl;
 }
 
-// class üzerinde değişiklik yapamıyor olması lazım const sayesinde, sadece bilgilere erişebiliyor
 void Account::displayStatus() const
 {
 	_displayTimestamp();
