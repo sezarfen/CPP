@@ -28,22 +28,28 @@ void	addingProcess(PhoneBook &pb)
 	std::cout << "***************";
 	
 	// Taking inputs from user
-	std::cout << std::endl << "Please enter a first name for contact : ";
+	std::cout << std::endl << "Please enter a first name for contact: ";
 	getline(std::cin, firstName);
-	std::cout << std::endl << "Please enter a last name for contact : ";
+	std::cout << std::endl << "Please enter a last name for contact: ";
 	getline(std::cin, lastName);
-	std::cout << std::endl << "Please enter a nick name for contact : ";
+	std::cout << std::endl << "Please enter a nick name for contact: ";
 	getline(std::cin, nickName);
-	std::cout << std::endl << "Please enter a phone number for contact : ";
+	std::cout << std::endl << "Please enter a phone number for contact: ";
 	getline(std::cin, phoneNumber);
-	std::cout << std::endl << "Please enter a darkest secret for contact : ";
+	std::cout << std::endl << "Please enter a darkest secret for contact: ";
 	getline(std::cin, darkestSecret);
-	
-	if (checkPhoneNumber(phoneNumber) == 0)
+
+	if (firstName.empty() || lastName.empty() || nickName.empty() || phoneNumber.empty() || darkestSecret.empty())
+	{
+		std::cout << "This is the case that cause me to give up on first attempt to CPP00, now please try to fill every each field 😎" << std::endl;
+		return ;
+	}
+	else if (checkPhoneNumber(phoneNumber) == 0)
 	{
 		std::cout << "You know what you are doing right 🤠, please enter a numerical phone number next time!" << std::endl;
 		return ;
 	}
+
 	std::cout << "There you go! now we have an additional contact!" << std::endl;
 	pb.addContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
 }
@@ -91,10 +97,10 @@ void	searchingProcess(PhoneBook &pb)
 	{
 		Contact c = pb.getContactByIndex(ch);
 		std::cout << "First Name: " << c.getFirstName() << std::endl;
-		std::cout << "Last Name:" << c.getLastName() << std::endl;
-		std::cout << "Nick Name:" << c.getNickName() << std::endl;
-		std::cout << "Phone Number:" << c.getPhoneNumber() << std::endl;
-		std::cout << "Darkest Secret:" << c.getDarkestSecret() << std::endl;
+		std::cout << "Last Name: " << c.getLastName() << std::endl;
+		std::cout << "Nick Name: " << c.getNickName() << std::endl;
+		std::cout << "Phone Number: " << c.getPhoneNumber() << std::endl;
+		std::cout << "Darkest Secret: " << c.getDarkestSecret() << std::endl;
 	}
 }
 
@@ -105,7 +111,7 @@ int main( void )
 	std::string command;
 	PhoneBook pb;
 	
-	std::cout << "Your command :";
+	std::cout << "Your command: ";
 	while (getline(std::cin, command))
 	{
 		if (command.compare("ADD") == 0)

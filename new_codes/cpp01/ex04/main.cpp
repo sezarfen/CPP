@@ -14,10 +14,10 @@ int main(int argc, char *argv[])
 
     // File progress
     std::ofstream file;
+    std::ofstream replace;
 
     file.open(argv[1]);
-    file << "Something written on this file" << std::endl;
-    file.close();
+    
 
     return (0);
 }
