@@ -71,7 +71,7 @@ Account::Account( int initial_deposit )
 	Account::_totalAmount += initial_deposit;
 	
 	// printing message
-	std::cout << "index:" << this->_accountIndex << ";amount:" << this->_amount << "created" << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";amount:" << this->_amount << ";created" << std::endl;
 }
 
 Account::Account( void )
