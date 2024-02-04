@@ -31,6 +31,5 @@ void    Harl::error( void )
 void    Harl::complain( std::string level )
 {
     std::string levels[] = {"debug", "info", "warning", "error"};
-    void (*func)();
-    func = debug;
+    void (* func)[] (void) =  {debug, info}; 
 }
