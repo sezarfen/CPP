@@ -1,23 +1,38 @@
 #include <iostream>
 #include <fstream>
 
-
 int main(int argc, char *argv[])
 {
-    /*
     if (argc != 4)
     {
-        std::cout << "Please use this format : " << " ./program [file_name] [string 1] [string 2]" << std::endl;
+        std::cout << "Wrong format of using program, Please use this format:" << std::endl;
+        std::cout << "./[program_name] [file_to_read] [string to change] [new string]" << std::endl;
+        return (1);
     }
-    */
-    // TODO: Error handling to check arguments giving correctly or not
 
-    // File progress
-    std::ofstream file;
-    std::ofstream replace;
+    std::ifstream fileToRead(argv[1], std::ios::binary);
+    if (!fileToRead.is_open())
+    {
+        std::cout << "Failed to open file to read." << std::endl;
+        return (1);
+    }
 
-    file.open(argv[1]);
+    // generating <file_name>.replace
+    std::string replace(argv[1]);
+    replace = replace + ".replace";
+
+    std::ofstream fileToWrite(replace, std::ios::binary);
+    if (!fileToWrite.is_open())
+    {
+        std::cout << "Failed to open file to write" << std::endl;
+        return (1);
+    }
     
+    // writing from input to output file
+    fileToWrite << fileToRead.rdbuf();
 
+    // closing files
+    fileToRead.close();
+    fileToWrite.close();
     return (0);
 }

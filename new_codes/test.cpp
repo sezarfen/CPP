@@ -55,14 +55,21 @@ int main(int argc, char *argv[])
     if (argc != 3)
         return (std::cout << "Please use this format ./a.out [file to read] [file to write]" << std::endl, 1);
 
-    std::ofstream fileToWrite;
-    std::ifstream fileToRead;
-    std::string temp;
-
-    fileToRead.open(argv[1]);
-    fileToWrite.open(argv[2]);
+    std::ifstream fileToRead(argv[1], std::ios::binary);
+    std::ofstream fileToWrite(argv[2], std::ios::binary);
     
-    while (fileToRead >> temp && fileToWrite << temp);
+    if (!fileToRead.is_open() || !fileToWrite.is_open())
+    {
+        std::cout << "An error occured while opening files" << std::endl;
+        return (1);
+    }
+
+    fileToWrite << fileToRead.rdbuf();
+    if (!fileToRead.good() || !fileToWrite.good())
+    {
+        std::cout << "An error occured while copying file" << std::endl;
+        return (1);
+    }
 
     return (0);
 }
