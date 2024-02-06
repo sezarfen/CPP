@@ -20,7 +20,7 @@ int main( void )
     h.complain("ERROR");
     std::cout << "*********************************" << std::endl;
     
-    std::cout << "Calling Harl on ELSE mode" << std::endl;
+    std::cout << "Calling Harl with something else" << std::endl;
     h.complain("ELSE");
     return (0);
 }
