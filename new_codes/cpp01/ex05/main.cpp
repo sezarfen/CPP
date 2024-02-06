@@ -22,6 +22,5 @@ int main( void )
     
     std::cout << "Calling Harl on ELSE mode" << std::endl;
     h.complain("ELSE");
-    
     return (0);
 }
