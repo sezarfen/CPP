@@ -30,6 +30,21 @@ void    Harl::error( void )
 
 void    Harl::complain( std::string level )
 {
-    std::string levels[] = {"debug", "info", "warning", "error"};
-    void (* func)[] (void) =  {debug, info}; 
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl::*f[4]) (void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    int current = -1;
+    for (int i = 0; i < 4; i++)
+    {
+        if (levels[i] == level)
+            current = i;
+    }
+
+    if (current < 0)
+    {
+        std::cout << "This is interesting but Harl don't want to say something for that" << std::endl;
+    }
+    else
+    {
+        (this->*f[current])();
+    }
 }
