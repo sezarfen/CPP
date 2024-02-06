@@ -1,6 +1,10 @@
 #include <iostream>
 #include <fstream>
 
+
+// This link might be useful for replacing occurence in the string
+// https://stackoverflow.com/questions/20406744/how-to-find-and-replace-all-occurrences-of-a-substring-in-a-string
+
 int main(int argc, char *argv[])
 {
     if (argc != 4)
