@@ -16,5 +16,5 @@ int main( void )
     std::cout << "The value pointed to by stringREF : " << stringREF << std::endl;
 
 
-    return (EXIT_SUCCESS);
+    return (0);
 }

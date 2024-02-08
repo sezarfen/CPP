@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-int main(int argc, char *argv[])
+int main( void )
 {
     Zombie *z1 = newZombie("Zombie1");
     z1->announce();
@@ -12,5 +12,5 @@ int main(int argc, char *argv[])
 
     delete z1; // we have to destroy them manually, because they initialized in the heap by using new keyword
     delete z5;
-    return (EXIT_SUCCESS);
+    return (0);
 }
