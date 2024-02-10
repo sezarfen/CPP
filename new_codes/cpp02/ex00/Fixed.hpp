@@ -6,12 +6,18 @@
 class Fixed
 {
     private:
+        int fixedPoint;
 
     public:
         Fixed();
         Fixed(const Fixed& fixed);
         ~Fixed();
         Fixed& operator=(const Fixed& fixed);
+
+        static const int fractionalBits = 8;
+
+        int getRawBits( void );
+        void setRawBits( int const raw );
 
 };
 

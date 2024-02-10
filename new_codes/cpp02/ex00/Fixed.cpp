@@ -1,21 +1,32 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : fixedPoint(0)
 {
-    std::cout << "Fixed class default constructor" << std::endl; 
+    std::cout << "Default constructor called" << std::endl; 
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-    // copy the instructions to other class to our class
+    this->fixedPoint = other.fixedPoint;
+    std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "Fixed class default destructor" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed& fixed)
 {
-    
+    std::cout << "Copy assignment operator called" << std::endl;
+}
+
+int Fixed::getRawBits( void )
+{
+    std::cout << "getRawBits member function called" << std::endl;
+}
+
+void Fixed::setRawBits( int const raw )
+{
+    std::cout << "getRawBits member function called" << std::endl;
 }
