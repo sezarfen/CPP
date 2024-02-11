@@ -1,7 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include <sstream> // for std::stringstream
-
+#include <sstream> // in order to use std::stringstream
 
 std::string replace_all(const std::string & str, const std::string & find, const std::string & replace)
 {
@@ -17,11 +16,9 @@ std::string replace_all(const std::string & str, const std::string & find, const
     return result;
 }
 
-
 int main(int argc, char *argv[])
 {
 
-    // check if the number of arguments giving correctly
     if (argc != 4)
     {
         std::cout << "Wrong format of using program, Please use this format:" << std::endl;
@@ -29,7 +26,6 @@ int main(int argc, char *argv[])
         return (1);
     }
 
-    // opening file we want to read from
     std::ifstream fileToRead(argv[1], std::ios::binary);
     if (!fileToRead.is_open())
     {
@@ -37,15 +33,12 @@ int main(int argc, char *argv[])
         return (1);
     }
 
-    // reading the file into temporary stringstream // with the help of the stringstream we can use <<
     std::stringstream temp;
     temp << fileToRead.rdbuf();
 
-    // generating <file_name>.replace
     std::string changedName = argv[1];
     changedName.append(".replace");
 
-    // opening file we want to write inside of it
     std::ofstream fileToWrite(changedName.c_str());
     if (!fileToWrite.is_open())
     {
@@ -53,17 +46,13 @@ int main(int argc, char *argv[])
         return (1);
     }
 
-    // turning (char *) to (std::string) by using std::string constructors
     std::string toSearch(argv[2]);
     std::string toReplace(argv[3]);
     
-    // replaced string to write inside of the <name>.replace file
     std::string newText = replace_all(temp.str(), toSearch, toReplace);
 
-    // writing from input to output file
     fileToWrite << newText;
 
-    // closing files
     fileToRead.close();
     fileToWrite.close();
     return (0);
