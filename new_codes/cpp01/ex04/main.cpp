@@ -1,16 +1,10 @@
 #include <fstream>
 #include <iostream>
-#include <sstream> //std::stringstream
+#include <sstream> // for std::stringstream
 
-// This link might be useful for replacing occurence in the string
-// https://stackoverflow.com/questions/20406744/how-to-find-and-replace-all-occurrences-of-a-substring-in-a-string
 
-std::string replace_all(
-    const std::string & str ,   // where to work
-    const std::string & find ,  // substitute 'find'
-    const std::string & replace //      by 'replace'
-) {
-    using namespace std;
+std::string replace_all(const std::string & str, const std::string & find, const std::string & replace)
+{
     std::string result;
     size_t find_len = find.size();
     size_t pos,from=0;
@@ -21,11 +15,6 @@ std::string replace_all(
     }
     result.append( str, from , std::string::npos );
     return result;
-/*
-    This code might be an improvement to James Kanze's
-    because it uses std::string methods instead of
-    general algorithms [as 'std::search()'].
-*/
 }
 
 
@@ -53,11 +42,11 @@ int main(int argc, char *argv[])
     temp << fileToRead.rdbuf();
 
     // generating <file_name>.replace
-    std::string replace(argv[1]);
-    replace = replace + ".replace";
+    std::string changedName = argv[1];
+    changedName.append(".replace");
 
     // opening file we want to write inside of it
-    std::ofstream fileToWrite(replace, std::ios::binary);
+    std::ofstream fileToWrite(changedName.c_str());
     if (!fileToWrite.is_open())
     {
         std::cout << "Failed to open file to write" << std::endl;
