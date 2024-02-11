@@ -1,4 +1,4 @@
-NAME=sed
+NAME=harlFilter
 SRCS=main.cpp Harl.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++

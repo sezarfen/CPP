@@ -8,9 +8,9 @@ std::string replace_all(const std::string & str, const std::string & find, const
     size_t find_len = find.size();
     size_t pos,from=0;
     while ( std::string::npos != ( pos=str.find(find,from) ) ) {
-        result.append( str, from, pos-from );
-        result.append( replace );
-        from = pos + find_len;
+        result.append( str, from, pos-from ); // aradığımız kelimeden öncesini ekleme yapıyoruz
+        result.append( replace ); // aradığımız kelimeyi ekliyoruz
+        from = pos + find_len; // başlama pozisyonunu kelimeden sonrasına atama yapıyoruz
     }
     result.append( str, from , std::string::npos );
     return result;
