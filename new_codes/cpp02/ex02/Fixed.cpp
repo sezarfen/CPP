@@ -77,3 +77,109 @@ std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
     out << fixed.toFloat();
     return (out);
 }
+
+// After ex02
+bool Fixed::operator>(const Fixed& rightOne)
+{
+    return (this->fixedPoint > rightOne.fixedPoint);
+}
+
+bool Fixed::operator<(const Fixed& rightOne)
+{
+    return (this->fixedPoint < rightOne.fixedPoint);
+}
+
+bool Fixed::operator>=(const Fixed& rightOne)
+{
+    return (this->fixedPoint >= rightOne.fixedPoint);
+}
+
+bool Fixed::operator<=(const Fixed& rightOne)
+{
+    return (this->fixedPoint <= rightOne.fixedPoint);
+}
+
+bool Fixed::operator==(const Fixed& rightOne)
+{
+    return (this->fixedPoint == rightOne.fixedPoint);
+}
+
+bool Fixed::operator!=(const Fixed& rightOne)
+{
+    return (this->fixedPoint == rightOne.fixedPoint);
+}
+
+float Fixed::operator+(const Fixed& fixed)
+{
+    return (this->toFloat() + fixed.toFloat());
+}
+
+float Fixed::operator-(const Fixed& fixed)
+{
+    return (this->toFloat() - fixed.toFloat());
+}
+
+float Fixed::operator*(const Fixed& fixed)
+{
+    return (this->toFloat() * fixed.toFloat());
+}
+
+float Fixed::operator/(const Fixed& fixed)
+{
+    return (this->toFloat() / fixed.toFloat());
+}
+
+Fixed& Fixed::operator++( void )
+{
+    ++(this->fixedPoint);
+    return (*this);
+}
+
+// postfix indicated by giving (int x) as a parameter
+Fixed& Fixed::operator++( int x )
+{
+    (void)x;
+    this->fixedPoint++;
+    return (*this);
+}
+
+Fixed& Fixed::operator--( void )
+{
+    --(this->fixedPoint);
+    return (*this);
+}
+
+Fixed& Fixed::operator--( int x )
+{
+    (void)x;
+    this->fixedPoint--;
+    return (*this);
+}
+
+Fixed& Fixed::min(Fixed& fixed1, Fixed& fixed2)
+{
+    if (fixed1.fixedPoint < fixed2.fixedPoint)
+        return (fixed1);
+    return (fixed2);
+}
+
+Fixed& Fixed::min(const Fixed& fixed1, const Fixed& fixed2)
+{
+    if (fixed1.fixedPoint < fixed2.fixedPoint)
+        return ((Fixed &)fixed1);
+    return ((Fixed &)fixed2);
+}
+
+Fixed& Fixed::max(Fixed& fixed1, Fixed& fixed2)
+{
+    if (fixed1.fixedPoint > fixed2.fixedPoint)
+        return (fixed1);
+    return (fixed2);
+}
+
+Fixed& Fixed::max(const Fixed& fixed1, const Fixed& fixed2)
+{
+    if (fixed1.fixedPoint > fixed2.fixedPoint)
+        return ((Fixed &)fixed1);
+    return ((Fixed &)fixed2);
+}

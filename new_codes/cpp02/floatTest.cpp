@@ -14,6 +14,7 @@ class Fixed
         
         int toInt( void ) const;
         float toFloat( void ) const;
+        float operator+(const Fixed& fixed);
 };
 
 Fixed::Fixed(const int number)
@@ -42,6 +43,10 @@ float Fixed::toFloat( void ) const
     return (newNum);
 }
 
+float Fixed::operator+(const Fixed& fixed)
+{
+    return (this->toFloat() + fixed.toFloat());
+}
 
 
 
@@ -49,10 +54,13 @@ int main()
 {
     Fixed f(1234.4321f);
     Fixed d(13);
+    /*
     std::cout << "toInt() class f : " << f.toInt() << std::endl;
     std::cout << "toInt() class d : " << d.toInt() << std::endl; 
     std::cout << "*************************" << std::endl;
     std::cout << "toFloat() class f : " << f.toFloat() << std::endl;
     std::cout << "toFloat() class d : " << d.toFloat() << std::endl; 
+    */
+   std::cout << f + d << std::endl;
     return (0);
 }

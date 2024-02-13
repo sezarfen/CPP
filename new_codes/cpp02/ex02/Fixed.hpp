@@ -34,14 +34,23 @@ class Fixed
         bool operator<=(const Fixed& rightOne);
         bool operator==(const Fixed& rightOne);
         bool operator!=(const Fixed& rightOne);
+
+        float operator+(const Fixed& fixed);
+        float operator-(const Fixed& fixed);
+        float operator*(const Fixed& fixed);
+        float operator/(const Fixed& fixed);
+
+        Fixed& operator++( void );
+        Fixed& operator++(int x);
+        Fixed& operator--( void );
+        Fixed& operator--(int x);
+
+        static Fixed& min(Fixed& fixed1, Fixed& fixed2);
+        static Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
+        static Fixed& max(Fixed& fixed1, Fixed& fixed2);
+        static Fixed& max(const Fixed& fixed1, const Fixed& fixed2);
+
         
-        bool operator+(const Fixed& rightOne);
-        bool operator-(const Fixed& rightOne);
-        bool operator*(const Fixed& rightOne);
-        bool operator/(const Fixed& rightOne);
-        
-        bool operator++(const Fixed& rightOne);
-        bool operator(const Fixed& rightOne);
 };
 
 // to output our class when given to the std::cout << Class

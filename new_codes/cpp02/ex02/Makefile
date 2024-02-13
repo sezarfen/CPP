@@ -1,4 +1,4 @@
-NAME=ex01
+NAME=ex02
 SRCS=Fixed.cpp main.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++
