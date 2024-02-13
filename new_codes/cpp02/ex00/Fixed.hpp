@@ -16,7 +16,7 @@ class Fixed
 
         static const int fractionalBits = 8;
 
-        int getRawBits( void );
+        int getRawBits( void ) const;
         void setRawBits( int const raw );
 
 };

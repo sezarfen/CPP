@@ -30,7 +30,7 @@ Fixed& Fixed::operator=(const Fixed& right) // a1 = a2, right indicates a2
     return (*this);
 }
 
-int Fixed::getRawBits( void )
+int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called" << std::endl;
     return (this->fixedPoint);
