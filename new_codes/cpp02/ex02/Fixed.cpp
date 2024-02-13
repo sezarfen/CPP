@@ -129,31 +129,33 @@ float Fixed::operator/(const Fixed& fixed)
     return (this->toFloat() / fixed.toFloat());
 }
 
-Fixed& Fixed::operator++( void )
+Fixed Fixed::operator++( void )
 {
     ++(this->fixedPoint);
     return (*this);
 }
 
 // postfix indicated by giving (int x) as a parameter
-Fixed& Fixed::operator++( int x )
+Fixed Fixed::operator++( int x )
 {
     (void)x;
+    Fixed temp = *this;
     this->fixedPoint++;
-    return (*this);
+    return (temp);
 }
 
-Fixed& Fixed::operator--( void )
+Fixed Fixed::operator--( void )
 {
     --(this->fixedPoint);
     return (*this);
 }
 
-Fixed& Fixed::operator--( int x )
+Fixed Fixed::operator--( int x )
 {
     (void)x;
+    Fixed temp = *this;
     this->fixedPoint--;
-    return (*this);
+    return (temp);
 }
 
 Fixed& Fixed::min(Fixed& fixed1, Fixed& fixed2)

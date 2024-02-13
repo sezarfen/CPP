@@ -40,10 +40,10 @@ class Fixed
         float operator*(const Fixed& fixed);
         float operator/(const Fixed& fixed);
 
-        Fixed& operator++( void );
-        Fixed& operator++(int x);
-        Fixed& operator--( void );
-        Fixed& operator--(int x);
+        Fixed operator++( void );
+        Fixed operator++(int x);
+        Fixed operator--( void );
+        Fixed operator--(int x);
 
         static Fixed& min(Fixed& fixed1, Fixed& fixed2);
         static Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
