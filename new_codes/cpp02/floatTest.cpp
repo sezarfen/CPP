@@ -31,14 +31,28 @@ Fixed::Fixed(const float number)
 
 int Fixed::toInt( void ) const
 {  
-
+    return (this->number >> this->dotLength);
 }
+
+float Fixed::toFloat( void ) const
+{
+    float newNum = this->number;
+    for (int i = 0; i < this->dotLength; i++)
+        newNum /= 2;
+    return (newNum);
+}
+
 
 
 
 int main()
 {
-    Fixed f(42.42f);
-    std::cout << f.getNumber() << std::endl;
+    Fixed f(1234.4321f);
+    Fixed d(13);
+    std::cout << "toInt() class f : " << f.toInt() << std::endl;
+    std::cout << "toInt() class d : " << d.toInt() << std::endl; 
+    std::cout << "*************************" << std::endl;
+    std::cout << "toFloat() class f : " << f.toFloat() << std::endl;
+    std::cout << "toFloat() class d : " << d.toFloat() << std::endl; 
     return (0);
 }
