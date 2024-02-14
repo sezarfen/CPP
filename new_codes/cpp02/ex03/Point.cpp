@@ -18,6 +18,16 @@ Point& Point::operator=(const Point& point)
     return (*this);
 }
 
+const Fixed& Point::getX() const
+{
+    return (this->x);
+}
+
+const Fixed& Point::getY() const
+{
+    return (this->y);
+}
+
 Point::~Point()
 {
     std::cout << "Default destructor called" << std::endl;

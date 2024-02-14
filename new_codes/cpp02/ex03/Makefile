@@ -1,5 +1,5 @@
-NAME=ex02
-SRCS=Fixed.cpp main.cpp
+NAME=ex03
+SRCS=Fixed.cpp main.cpp bsp.cpp Point.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++
 

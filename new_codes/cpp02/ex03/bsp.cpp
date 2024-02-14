@@ -10,6 +10,7 @@ Thus, if the point is a vertex or on edge, it will return False.
 float area(float x1, float y1, float x2, float y2, float x3, float y3)
 {
    float calculatedArea =  (x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0;
+   
    if (calculatedArea < 0)
       return (-calculatedArea);
    return (calculatedArea);

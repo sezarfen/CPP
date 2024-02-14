@@ -14,11 +14,13 @@ class Point
         Point( const Point& point );
 
         // Useful functions
-        Fixed getX() const;
-        Fixed getY() const;
+        const Fixed& getX() const;
+        const Fixed& getY() const;
 
         Point& operator=(const Point& point);
         ~Point( void );
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif /* end of POINT_HPP */
