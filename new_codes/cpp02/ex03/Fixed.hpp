@@ -2,7 +2,7 @@
 # define FIXED_HPP
 
 #include <iostream>
-// aftere ex01
+// after ex01
 #include <cmath>
 
 class Fixed
