@@ -1,6 +1,6 @@
 NAME=ex03
 SRCS=ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-CFLAGS=-Werror -Wall -Wextra -std=c++98
+CFLAGS=-Werror -Wall -Wextra -std=c++98 # -Wshadow  -Wno-shadow
 CC=g++
 
 all: $(NAME)

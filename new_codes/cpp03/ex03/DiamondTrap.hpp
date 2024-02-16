@@ -22,5 +22,4 @@ class DiamondTrap : public FragTrap, public ScavTrap
         void whoAmI( void );
 };
 
-
 #endif /* end of DIAMONDTRAP_HPP */
