@@ -30,7 +30,6 @@ ScavTrap::~ScavTrap( void )
 
 ScavTrap& ScavTrap::operator=( const ScavTrap& rightOne )
 {
-    std::cout << "ScavTrap copy assignment operator called" << std::endl;
     if (this == &rightOne)
         return (*this);
     this->name = rightOne.name;
