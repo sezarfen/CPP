@@ -1,5 +1,4 @@
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main( void )
 {
@@ -51,6 +50,22 @@ int main( void )
     f2.attack("Enemy1");
     f2.beRepaired(10);
     f4.highFivesGuys();
+    std::cout << "**************************" << std::endl;
+    std::cout << "**************************" << std::endl;
+
+    std::cout << "***** EX03 DiamondTrap tests *****" << std::endl;
+    DiamondTrap dt1;
+    DiamondTrap dt2("DiamondTrapWithName");
+    DiamondTrap dt3(dt2);
+    DiamondTrap dt4;
+    dt4 = dt2;
+
+    std::cout << "**************************" << std::endl;
+    std::cout << "*********Calling Functions**********" << std::endl;
+
+    dt2.attack("TheEnemy");
+    dt2.whoAmI();
+
     std::cout << "**************************" << std::endl;
     std::cout << "**************************" << std::endl;
 

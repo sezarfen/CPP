@@ -1,5 +1,5 @@
-NAME=ex02
-SRCS=ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp
+NAME=ex03
+SRCS=ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++
 
