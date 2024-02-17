@@ -11,9 +11,13 @@ class Animal
     public:
         Animal( void );
         Animal( const Animal& other );
-        ~Animal( void );
+        virtual ~Animal( void );
 
         Animal& operator=( const Animal& rightOne );
+
+        virtual void makeSound( void );
+
+        std::string getType( void ) const;
 };
 
 #endif /* end of ANIMAL_HPP */
