@@ -9,9 +9,15 @@ Dog::Dog( void )
 
 Dog::Dog( const Dog& other ) : Animal(other)
 {
+
     std::cout << "Dog class's copy constructor called" << std::endl;
     this->type = other.type;
-    this->brain = other.brain;
+    
+    // For deep copy, generate a new area in the heap and fill with the values
+    if (this->brain)
+        delete brain;
+    this->brain = new Brain(other.brain); // if we could call this->brain = rightOne.brain this will lead to shallow copy, and it will effect program in undesired way
+
 }
 
 Dog::~Dog( void )
@@ -26,8 +32,12 @@ Dog& Dog::operator=( const Dog& rightOne )
     if (this == &rightOne)
         return (*this);
     this->type = rightOne.type;
-    delete brain;
-    this->brain = rightOne.brain;
+    
+    // For deep copy, generate a new area in the heap and fill with the values
+    if (this->brain)
+        delete brain;
+    this->brain = new Brain(rightOne.brain); // if we could call this->brain = rightOne.brain this will lead to shallow copy, and it will effect program in undesired way
+
     return (*this);
 }
 
