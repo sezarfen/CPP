@@ -30,6 +30,7 @@ ScavTrap::~ScavTrap( void )
 
 ScavTrap& ScavTrap::operator=( const ScavTrap& rightOne )
 {
+    std::cout << "ScavTrap copy assignment operator called" << std::endl;
     if (this == &rightOne)
         return (*this);
     this->name = rightOne.name;
@@ -42,4 +43,16 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& rightOne )
 void ScavTrap::guardGate( void )
 {
     std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+}
+
+void ScavTrap::attack( const std::string& enemy )
+{
+    if (this->energyPoints <= 0)
+    {
+        std::cout << "Sorry ma boy, I am just out of energy points, see you fellas! yiiihhhaaa!!!" << std::endl;
+        return ;
+    }
+    std::cout << "+ Say my name!" << std::endl;
+    std::cout << "- " << this->name << std::endl;
+    std::cout << "+ You are right "<< enemy << "... FIRE FIRE FIRE!!!" << std::endl;
 }
