@@ -23,6 +23,10 @@ Brain::operator=( const Brain& rightOne )
 {
     if (this == &rightOne)
         return (*this);
-    this->ideas = rightOne.ideas;
+
+    // just copying the contents // I think it counts as deep copy
+    for (int i = 0; i < 100; i++)
+        this->ideas[i] = rightOne.ideas[i];
+    
     return (*this);
 }
