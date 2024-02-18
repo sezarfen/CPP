@@ -22,6 +22,7 @@ Animal& Animal::operator=( const Animal& rightOne )
     std::cout << "Animal class's copy assignment operator called" << std::endl;
     if (this == &rightOne)
         return (*this);
+
     this->type = rightOne.type;
     return (*this);
 }

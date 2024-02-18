@@ -19,7 +19,7 @@ Brain::~Brain( void )
     std::cout << "Brain class destructor called" << std::endl;
 }
 
-Brain::operator=( const Brain& rightOne )
+Brain& Brain::operator=( const Brain& rightOne )
 {
     if (this == &rightOne)
         return (*this);

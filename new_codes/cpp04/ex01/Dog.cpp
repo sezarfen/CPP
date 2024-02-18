@@ -37,7 +37,6 @@ Dog& Dog::operator=( const Dog& rightOne )
     if (this->brain)
         delete brain;
     this->brain = new Brain(*(rightOne.brain)); // if we could call this->brain = rightOne.brain this will lead to shallow copy, and it will effect program in undesired way
-
     return (*this);
 }
 
