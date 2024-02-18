@@ -14,6 +14,15 @@ int main()
     d->makeSound();
     a->makeSound();
 
+    {
+        std::cout << "*****Innerscope*****" << std::endl;
+        Animal *x = new Cat();
+        Animal *y = new Cat((const Cat&)*x);
+        delete x;
+        delete y;
+        std::cout << "*****Innerscope*****" << std::endl;
+    }
+
     delete a;
     delete c;
     delete d;

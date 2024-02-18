@@ -13,7 +13,9 @@ class Cat : public Animal
 
         Cat& operator=( const Cat& rightOne );
 
-        void makeSound( void ) override; // using override keyword is a great approach, prevent us to do some mistakes, even though while writing the name of the function
+        // using override keyword is a great approach, prevent us to do some mistakes, even though while writing the name of the function
+        // but it comes after -std=c++11
+        void makeSound( void );
 };
 
 #endif /* end of CAT_HPP */

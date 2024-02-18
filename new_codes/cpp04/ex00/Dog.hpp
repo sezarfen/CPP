@@ -13,7 +13,7 @@ class Dog : public Animal
 
         Dog& operator=( const Dog& rightOne );
 
-        void makeSound( void ) override;
+        void makeSound( void );
 };
 
 #endif /* end of DOG_HPP */

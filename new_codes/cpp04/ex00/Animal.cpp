@@ -33,6 +33,6 @@ void Animal::makeSound( void )
 
 std::string Animal::getType( void ) const
 {
-    std::cout << "type getter function called" << std::endl;
+    std::cout << "Type getter function called" << std::endl;
     return (this->type);
 }

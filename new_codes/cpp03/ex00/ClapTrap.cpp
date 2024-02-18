@@ -8,7 +8,6 @@ ClapTrap::ClapTrap( void )
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
-
 }
 
 ClapTrap::ClapTrap( const ClapTrap& other )
