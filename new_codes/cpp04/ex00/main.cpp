@@ -1,5 +1,6 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -21,6 +22,21 @@ int main()
         delete x;
         delete y;
         std::cout << "*****Innerscope*****" << std::endl;
+    }
+
+    // we have to add some wrong animall stuff here
+
+    {
+        std::cout << "*****Innerscope for WrongAnimal*****" << std::endl;
+        WrongAnimal *x = new WrongAnimal();
+        WrongAnimal *y = new WrongCat();
+        std::cout << x->getType() << std::endl;
+        std::cout << y->getType() << std::endl;
+        x->makeSound();
+        y->makeSound();
+        delete x;
+        delete y;
+        std::cout << "*****Innerscope for WrongAnimal*****" << std::endl;
     }
 
     delete a;
