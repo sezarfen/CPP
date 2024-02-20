@@ -21,5 +21,10 @@ int main( void )
     for (int i = 0; i < 10; i++)
         delete animalArray[i];
     delete[] animalArray;
+
+    // New Tests for ex02
+    Animal *a = new Animal();
+    a->getType();
+
     return (0);
 }
