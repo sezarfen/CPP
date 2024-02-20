@@ -9,8 +9,8 @@ Brain::Brain( const Brain& other )
 {
     std::cout << "Brain class copy constructor called" << std::endl;
     
-    // just copying the contents // I think it counts as deep copy
-    for (int i = 0;i < 100; i++)
+    // just copying the contents // I think it counts as a deep copy
+    for (int i = 0; i < 100; i++)
         this->ideas[i] = other.ideas[i];
 }
 

@@ -32,7 +32,7 @@ Cat& Cat::operator=( const Cat& rightOne )
     this->type = rightOne.type;
 
     // For deep copy, generate a new area in the heap and fill with the values
-    if (this->brain)
+    if (this->brain) // If I delete this one, when we do c1 = c2, it causes a memory leak
         delete brain;
     this->brain = new Brain(*(rightOne.brain)); // if we could call this->brain = rightOne.brain this will lead to shallow copy, and it will effect program in undesired way
     

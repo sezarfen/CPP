@@ -1,4 +1,4 @@
-NAME=ex00
+NAME=ex01
 SRCS=Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++

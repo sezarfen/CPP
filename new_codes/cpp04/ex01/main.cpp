@@ -2,6 +2,7 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
+/*
 int main( void )
 {
     const Animal* j = new Dog();
@@ -21,5 +22,17 @@ int main( void )
     for (int i = 0; i < 10; i++)
         delete animalArray[i];
     delete[] animalArray;
+    return (0);
+}
+*/
+
+int main( void )
+{
+    Cat c1;
+    Cat c2;
+    Cat c3;
+
+    c1 = c3;
+
     return (0);
 }
