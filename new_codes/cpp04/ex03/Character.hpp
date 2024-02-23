@@ -2,11 +2,14 @@
 # define CHARACTER_HPP
 
 # include "ICharacter.hpp"
+# include "AMateria.hpp"
 
 class Character : public ICharacter
 {
     private:
-        // there might be some attributes
+        std::string name;
+        AMateria* materias[4];
+        int current;
     public:
         Character( void );
         Character( const Character& other );
@@ -15,7 +18,7 @@ class Character : public ICharacter
         Character& operator=( const Character& rightOne );
 
         // override functions
-        std::string const & getName() const;
+        std::string const & getName() const;   // this might need to have private name attribute
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
