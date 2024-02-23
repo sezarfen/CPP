@@ -1,7 +1,9 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-class Ice
+#include "AMateria.hpp"
+
+class Ice : public AMateria
 {
     private:
         // there might be some attributes
@@ -14,7 +16,10 @@ class Ice
         Ice& operator=( const Ice& rightOne );
 
         // override
-        virtual AMateria* clone() const;
+        AMateria* clone() const;
+
+        // override
+        void use( ICharacter& target );
 };
 
 #endif /* end of ICE_HPP */
