@@ -41,3 +41,15 @@ void Character::equip( AMateria* m )
     // than 3 and so on
     materias[current] = m;
 }
+
+void Character::unequip( int idx )
+{
+    // TODO: delete the given index, if it is available
+}
+
+void Character::use(int idx, ICharacter& target)
+{
+    // TODO: check if the given idx is exists
+    
+    target.use(this->materias[idx]);
+}
