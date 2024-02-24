@@ -13,6 +13,16 @@ Character::Character( const Character& other )
     // TODO: deep copy might needed here
 }
 
+Character::Character( std::string const& name )
+{
+    this->name = 0;
+
+    /* // I DON'T KNOW IF THIS IS NECESSARY
+    for(int i = 0; i < 4; i++)
+        this->materias[i] = NULL;
+    */
+}
+
 Character::~Character( void )
 {
     std::cout << "Character class destructor called" << std::endl;
@@ -25,7 +35,7 @@ Character& Character::operator=( const Character& other )
     
     this->name = other.name;
 
-    // TODO: deep copy might needed here
+    // TODO: deep copy might needed here // later note: YEP, deep copy needed
 
     return (*this);
 }

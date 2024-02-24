@@ -13,6 +13,7 @@ class Character : public ICharacter
     public:
         Character( void );
         Character( const Character& other );
+        Character( std::string const& name );
         ~Character( void );
 
         Character& operator=( const Character& rightOne );
