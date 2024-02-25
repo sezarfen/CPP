@@ -35,7 +35,7 @@ Character::Character( const Character& other )
 
 Character::Character( std::string const& name )
 {
-    this->name = "Unknown Character";
+    this->name = name;
     for(int i = 0; i < 4; i++)
         this->materias[i] = NULL;
 }

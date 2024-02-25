@@ -7,7 +7,7 @@ AMateria::AMateria( void )
 
 AMateria::AMateria( std::string const & type )
 {
-    this->type = type;
+    this->type = type; // Does not make sense, but it is okay.
 }
 
 AMateria::AMateria( const AMateria& other )
@@ -36,4 +36,5 @@ std::string const & AMateria::getType() const
 void AMateria::use(ICharacter& target)
 {
     // will be return something later, when we declare ICharacter İnşaAllah
+    std::cout << "AMateria type class, didn't specified what to do" << std::endl;
 }
