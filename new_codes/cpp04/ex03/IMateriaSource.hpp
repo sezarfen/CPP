@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
 class IMateriaSource
 {
@@ -7,3 +8,5 @@ class IMateriaSource
         virtual void learnMateria(AMateria*) = 0;
         virtual AMateria* createMateria(std::string const & type) = 0;
 };
+
+#endif /* end of IMATERIASOURCE_HPP */

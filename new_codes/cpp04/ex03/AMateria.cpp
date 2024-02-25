@@ -36,5 +36,6 @@ std::string const & AMateria::getType() const
 void AMateria::use(ICharacter& target)
 {
     // will be return something later, when we declare ICharacter İnşaAllah
+    (void) target;
     std::cout << "AMateria type class, didn't specified what to do" << std::endl;
 }

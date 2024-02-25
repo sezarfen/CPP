@@ -91,7 +91,7 @@ void Character::equip( AMateria* m )
     for (int i = 0; i < 4; i++) // because they might fulfill the indexed 1 2 [] 4 // 3 is empty, subject says, first empty slot they find
     {
         if (this->materias[i] == NULL)
-            this->materias = m;
+            this->materias[i] = m;
     }
 }
 
@@ -111,5 +111,5 @@ void Character::use(int idx, ICharacter& target)
     if (idx < 0 || idx > 3)
         return ;
     if (this->materias[idx] != NULL)
-        target.use(this->materias[idx]);
+        this->materias[idx]->use(target);
 }

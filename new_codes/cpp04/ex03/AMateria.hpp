@@ -1,6 +1,9 @@
-#pragma once // or maybe we can change with classical ifndef statements later on 
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 #include <iostream>
+
+class ICharacter;
 
 class AMateria
 {
@@ -10,7 +13,7 @@ class AMateria
         AMateria( std::string const & type );
         AMateria( void );
         AMateria( const AMateria& other );
-        ~AMateria( void );
+        virtual ~AMateria( void );
 
         AMateria& operator=( const AMateria& rightOne );
 
@@ -19,3 +22,5 @@ class AMateria
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter& target);
 };
+
+#endif /* end of AMATERIA_HPP  */

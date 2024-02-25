@@ -1,5 +1,5 @@
 NAME=ex03
-SRCS=
+SRCS=AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp main.cpp
 CFLAGS=-Werror -Wall -Wextra -std=c++98
 CC=g++
 
