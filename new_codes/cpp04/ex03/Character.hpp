@@ -2,14 +2,14 @@
 # define CHARACTER_HPP
 
 # include "ICharacter.hpp"
-# include "AMateria.hpp"
+# include "Ice.hpp"
+# include "Cure.hpp"
 
 class Character : public ICharacter
 {
     private:
         std::string name;
         AMateria* materias[4];
-        int current;
     public:
         Character( void );
         Character( const Character& other );
