@@ -23,8 +23,11 @@ int main( void )
     delete[] animalArray;
 
     // New Tests for ex02
+    // uncomment in while evoluation
+    /*   // we can't instantiate
     Animal *a = new Animal();
     a->getType();
+    */
 
     return (0);
 }
