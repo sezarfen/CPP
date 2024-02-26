@@ -12,7 +12,6 @@ Cure::Cure( const Cure& other ) : AMateria(other)
 
 Cure::~Cure( void )
 {
-    std::cout << "Cure class's destructor called" << std::endl;
 }
 
 Cure& Cure::operator=( const Cure& rightOne )
@@ -30,5 +29,5 @@ AMateria* Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
-    std::cout << "* heals "<< target.getName() << "’s wounds *" << std::endl;
+    std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

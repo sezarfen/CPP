@@ -12,7 +12,6 @@ Ice::Ice( const Ice& other ) : AMateria(other)
 
 Ice::~Ice( void )
 {
-    std::cout << "Ice class's default constructor called" << std::endl;
 }
 
 Ice& Ice::operator=( const Ice& rightOne )

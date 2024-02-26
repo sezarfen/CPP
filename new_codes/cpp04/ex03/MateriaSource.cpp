@@ -2,8 +2,6 @@
 
 MateriaSource::MateriaSource( void )
 {
-    std::cout << "MateriaSource default constructor called" << std::endl;
-    this->current = 0;
     for (int i = 0; i < 4; i++)
         this->source[i] = NULL;
 }
@@ -39,9 +37,7 @@ MateriaSource::MateriaSource( const MateriaSource& other )
 
 MateriaSource::~MateriaSource( void )
 {
-    std::cout << "MateriaSource destructor called" << std::endl;
-
-    for (int i = 0; i < this->current; i++)
+    for (int i = 0; i < 4; i++)
     {
         if (this->source[i] != NULL)
             delete this->source[i];
@@ -85,21 +81,30 @@ void MateriaSource::learnMateria( AMateria* materia )
     for (int i = 0; i < 4; i++)
     {
         if (this->source[i] == NULL)
-            this->source[i] = materia;
+        {
+            this->source[i] = (Cure *)materia;
+            break;
+        }
     }
 }
 
 AMateria* MateriaSource::createMateria( std::string const& type )
 {
-    int i = this->current;
+    int i = 3;
     while (i >= 0)
     {
-        if (this->source[i]->getType() == type)
+        if (this->source[i] != NULL && this->source[i]->getType() == type)
         {
             if (type == "ice")
+            {
+                //std::cout << "Bismillahirrahmanirrahim" << std::endl;
                 return (new Ice((Ice &)*(this->source[i])));
+            }
             else
+            {
+                //std::cout << "Elhamdulillah" << std::endl;
                 return (new Cure((Cure &)*(this->source[i])));
+            }
         }
         i--;
     }

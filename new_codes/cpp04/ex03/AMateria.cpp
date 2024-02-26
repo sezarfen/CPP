@@ -17,7 +17,6 @@ AMateria::AMateria( const AMateria& other )
 
 AMateria::~AMateria( void )
 {
-    std::cout << "AMateria destructor called" << std::endl;
 }
 
 AMateria& AMateria::operator=( const AMateria& rightOne )

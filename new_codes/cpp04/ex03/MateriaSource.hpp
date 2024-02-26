@@ -9,7 +9,6 @@ class MateriaSource : public IMateriaSource
 {
     private:
         AMateria* source[4];
-        int current;
     public:
         MateriaSource( void );
         MateriaSource( const MateriaSource& other );

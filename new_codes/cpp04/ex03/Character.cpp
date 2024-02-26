@@ -2,7 +2,6 @@
 
 Character::Character( void )
 {
-    std::cout << "Character constructor called" << std::endl;
     this->name = "Unknown Character";
     for(int i = 0; i < 4; i++)
         this->materias[i] = NULL;
@@ -48,7 +47,6 @@ Character::Character( std::string const& name )
 
 Character::~Character( void )
 {
-    std::cout << "Character class destructor called" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if (this->materias[i] != NULL)
@@ -103,7 +101,10 @@ void Character::equip( AMateria* m )
     for (int i = 0; i < 4; i++) // because they might fulfill the indexed 1 2 [] 4 // 3 is empty, subject says, first empty slot they find
     {
         if (this->materias[i] == NULL)
+        {
             this->materias[i] = m;
+            break;
+        }
     }
 }
 
@@ -123,5 +124,14 @@ void Character::use(int idx, ICharacter& target)
     if (idx < 0 || idx > 3)
         return ;
     if (this->materias[idx] != NULL)
-        this->materias[idx]->use(target);
+    {
+        if (this->materias[idx]->getType() == "ice")
+        {
+            ((Ice *)this->materias[idx])->use(target);
+        }
+        else
+        {
+            ((Cure *)this->materias[idx])->use(target);
+        }
+    }
 }
