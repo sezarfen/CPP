@@ -5,8 +5,6 @@
 
 class Cure : public AMateria
 {
-    private:
-        // there might be some attributes
     public:
         Cure( void );
         Cure( const Cure& other );

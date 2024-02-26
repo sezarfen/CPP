@@ -32,7 +32,6 @@ MateriaSource::MateriaSource( const MateriaSource& other )
             }
         }
     }
-    // TODO: we can enhance with respect to the changes
 }
 
 MateriaSource::~MateriaSource( void )
@@ -82,7 +81,10 @@ void MateriaSource::learnMateria( AMateria* materia )
     {
         if (this->source[i] == NULL)
         {
-            this->source[i] = (Cure *)materia;
+            if (materia->getType() == "ice")
+                this->source[i] = new Ice((Ice &)*materia);
+            else
+                this->source[i] = new Cure((Cure &)*materia);
             break;
         }
     }

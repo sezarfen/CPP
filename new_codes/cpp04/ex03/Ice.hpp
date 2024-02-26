@@ -5,9 +5,6 @@
 
 class Ice : public AMateria
 {
-    private:
-        // there might be some attributes
-
     public:
         Ice( void );
         Ice( const Ice& other );

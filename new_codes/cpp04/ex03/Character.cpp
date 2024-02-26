@@ -49,8 +49,12 @@ Character::~Character( void )
 {
     for (int i = 0; i < 4; i++)
     {
+        std::cout << "Problem occured at the point where i is : " << i << std::endl;
         if (this->materias[i] != NULL)
+        {
+            std::cout << "at i : " << i << ", problem occured at the materias type : " << this->materias[i]->getType() << std::endl;
             delete this->materias[i];
+        }
     }
 }
 
@@ -113,10 +117,7 @@ void Character::unequip( int idx )
     if (idx < 0 || idx > 3)
         return ;
     if (this->materias[idx] != NULL)
-    {
-        delete this->materias[idx];
         this->materias[idx] = NULL;
-    }
 }
 
 void Character::use(int idx, ICharacter& target)
