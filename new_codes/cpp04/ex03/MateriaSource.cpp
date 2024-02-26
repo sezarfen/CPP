@@ -39,7 +39,10 @@ MateriaSource::~MateriaSource( void )
     for (int i = 0; i < 4; i++)
     {
         if (this->source[i] != NULL)
+        {
             delete this->source[i];
+            this->source[i] = NULL;
+        }
     }
 }
 
@@ -82,9 +85,9 @@ void MateriaSource::learnMateria( AMateria* materia )
         if (this->source[i] == NULL)
         {
             if (materia->getType() == "ice")
-                this->source[i] = new Ice((Ice &)*materia);
+                this->source[i] = materia; // there is the base of the leak, subject referes interesting
             else
-                this->source[i] = new Cure((Cure &)*materia);
+                this->source[i] = materia;
             break;
         }
     }
@@ -98,17 +101,11 @@ AMateria* MateriaSource::createMateria( std::string const& type )
         if (this->source[i] != NULL && this->source[i]->getType() == type)
         {
             if (type == "ice")
-            {
-                //std::cout << "Bismillahirrahmanirrahim" << std::endl;
                 return (new Ice((Ice &)*(this->source[i])));
-            }
             else
-            {
-                //std::cout << "Elhamdulillah" << std::endl;
                 return (new Cure((Cure &)*(this->source[i])));
-            }
         }
         i--;
     }
-    return (NULL);
+    return (0);
 }

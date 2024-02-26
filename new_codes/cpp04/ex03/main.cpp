@@ -9,6 +9,7 @@
 int main()
 {
     // Tests provided by the subject
+
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -24,10 +25,12 @@ int main()
     me->use(0, *bob);
     me->use(1, *bob);
     
-    delete bob;
+    delete bob; 
     delete me;
     delete src;
     ////////////////
+
+    std::cout << "*************************" << std::endl;
 
     // My Tests
     std::cout << "TEST 1 : Normal initialization" << std::endl;
@@ -56,13 +59,7 @@ int main()
     myCharacter->equip(newIce);
     myCharacter->use(0, *myCharacter);
     std::cout << "--- END OF TEST 2 ---" << std::endl;
-    int i = 0;
-    delete ice;
-    std::cout << i++ << std::endl;
-    delete cure;
-    std::cout << i++ << std::endl;
     delete source;
-    std::cout << i++ << std::endl;
     delete myCharacter; // will also delete newIce
     return 0;
 }

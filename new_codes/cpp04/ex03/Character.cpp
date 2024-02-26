@@ -49,11 +49,10 @@ Character::~Character( void )
 {
     for (int i = 0; i < 4; i++)
     {
-        std::cout << "Problem occured at the point where i is : " << i << std::endl;
         if (this->materias[i] != NULL)
         {
-            std::cout << "at i : " << i << ", problem occured at the materias type : " << this->materias[i]->getType() << std::endl;
             delete this->materias[i];
+            this->materias[i] = NULL;
         }
     }
 }
