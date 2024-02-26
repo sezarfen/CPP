@@ -18,7 +18,10 @@ Character::Character( const Character& other )
             if (other.materias[i] != NULL)
             {
                 delete this->materias[i];
-                this->materias[i] = other.materias[i]->getType() == "Ice" ? new Ice() : new Cure();
+                if (other.materias[i]->getType() == "ice")
+                    this->materias[i] = new Ice();
+                else
+                    this->materias[i] = new Cure();    
             }
             else
             {
@@ -28,7 +31,10 @@ Character::Character( const Character& other )
         }
         else
         {
-            this->materias[i] = other.materias[i]->getType() == "Ice" ? new Ice() : new Cure();
+            if (other.materias[i]->getType() == "ice")
+                this->materias[i] = new Ice();
+            else
+                this->materias[i] = new Cure(); 
         }
     }
 }
@@ -64,7 +70,10 @@ Character& Character::operator=( const Character& other )
             if (other.materias[i] != NULL)
             {
                 delete this->materias[i];
-                this->materias[i] = other.materias[i]->getType() == "Ice" ? new Ice() : new Cure();
+                if (other.materias[i]->getType() == "ice")
+                    this->materias[i] = new Ice();
+                else
+                    this->materias[i] = new Cure(); 
             }
             else
             {
@@ -74,7 +83,10 @@ Character& Character::operator=( const Character& other )
         }
         else
         {
-            this->materias[i] = other.materias[i]->getType() == "Ice" ? new Ice() : new Cure();
+            if (other.materias[i]->getType() == "ice")
+                this->materias[i] = new Ice();
+            else
+                this->materias[i] = new Cure(); 
         }
     }
     return (*this);

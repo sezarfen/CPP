@@ -15,7 +15,7 @@ class MateriaSource : public IMateriaSource
         MateriaSource( const MateriaSource& other );
         ~MateriaSource( void );
 
-        MateriaSource* operator=( const MateriaSource& rightOne );
+        MateriaSource& operator=( const MateriaSource& rightOne );
 
         // override functions
         void learnMateria( AMateria* materia );

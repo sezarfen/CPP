@@ -18,9 +18,9 @@ MateriaSource::MateriaSource( const MateriaSource& other )
             {
                 delete this->source[i];
                 if (other.source[i]->getType() == "ice")
-                    this->source[i] = new Ice(other.source[i]);
+                    this->source[i] = new Ice((Ice &)*(other.source[i]));
                 else
-                    this->source[i] = new Cure(other.source[i]);
+                    this->source[i] = new Cure((Cure &)*(other.source[i]));
             }
         }
         else
@@ -28,9 +28,9 @@ MateriaSource::MateriaSource( const MateriaSource& other )
             if (other.source[i] != NULL)
             {
                 if (other.source[i]->getType() == "ice")
-                    this->source[i] = new Ice(other.source[i]);
+                    this->source[i] = new Ice((Ice &)*(other.source[i]));
                 else
-                    this->source[i] = new Cure(other.source[i]);
+                    this->source[i] = new Cure((Cure &)*(other.source[i]));
             }
         }
     }
@@ -48,9 +48,9 @@ MateriaSource::~MateriaSource( void )
     }
 }
 
-MateriaSource* MateriaSource::operator=( const MateriaSource& other )
+MateriaSource& MateriaSource::operator=( const MateriaSource& other )
 {
-    if (this == &rightOne)
+    if (this == &other)
         return (*this);
 
     for (int i = 0; i < 4; i++)
@@ -61,9 +61,9 @@ MateriaSource* MateriaSource::operator=( const MateriaSource& other )
             {
                 delete this->source[i];
                 if (other.source[i]->getType() == "ice")
-                    this->source[i] = new Ice(other.source[i]);
+                    this->source[i] = new Ice((Ice &)*(other.source[i]));
                 else
-                    this->source[i] = new Cure(other.source[i]);
+                    this->source[i] = new Cure((Cure &)*(other.source[i]));
             }
         }
         else
@@ -71,9 +71,9 @@ MateriaSource* MateriaSource::operator=( const MateriaSource& other )
             if (other.source[i] != NULL)
             {
                 if (other.source[i]->getType() == "ice")
-                    this->source[i] = new Ice(other.source[i]);
+                    this->source[i] = new Ice((Ice &)*(other.source[i]));
                 else
-                    this->source[i] = new Cure(other.source[i]);
+                    this->source[i] = new Cure((Cure &)*(other.source[i]));
             }
         }
     }
@@ -94,13 +94,14 @@ AMateria* MateriaSource::createMateria( std::string const& type )
     int i = this->current;
     while (i >= 0)
     {
-        if (this->source[i].getType() == type)
+        if (this->source[i]->getType() == type)
         {
             if (type == "ice")
-                return (new Ice(this->source[i]));
+                return (new Ice((Ice &)*(this->source[i])));
             else
-                return (new Cure(this->source[i]));
+                return (new Cure((Cure &)*(this->source[i])));
         }
         i--;
     }
+    return (NULL);
 }
