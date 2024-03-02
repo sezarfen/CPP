@@ -33,7 +33,7 @@ int main()
         std::cout << x->getType() << std::endl;
         std::cout << y->getType() << std::endl;
         x->makeSound();
-        y->makeSound(); // ir will print the same thing with the WrongAnimal
+        y->makeSound(); // it will print the same thing with the WrongAnimal
         delete x;
         delete y;
         std::cout << "*****Innerscope for WrongAnimal*****" << std::endl;
