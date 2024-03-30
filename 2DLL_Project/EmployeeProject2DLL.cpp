@@ -141,8 +141,8 @@ EmployeeNode *EmployeeProject2DLL::addNewEmployee(string employee_name)
 void EmployeeProject2DLL::reOrderProjects(EmployeeNode *employee)
 {
 
-	ProjectNode *tProject = temp->head;
-	while (isProjectsAreSorted(temp->head) == false)
+	ProjectNode *tProject = employee->head;
+	while (isProjectsAreSorted(employee->head) == false)
 	{
 		if (tProject->project_priority > tProject->next->project_priority)
 		{
@@ -154,7 +154,7 @@ void EmployeeProject2DLL::reOrderProjects(EmployeeNode *employee)
 		}
 		tProject = tProject->next;
 		if (tProject == NULL)
-			tProject = temp->head;
+			tProject = employee->head;
 	}
 }
 
