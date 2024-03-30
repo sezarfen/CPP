@@ -48,6 +48,8 @@ void EmployeeProject2DLL::addProjectInOrder(EmployeeNode *employee, string proje
 	}
 }
 
+
+// IT SEEMS NOT COMPLETED
 void EmployeeProject2DLL::deleteProjectByName(EmployeeNode *employee, string project_name)
 {
 	// some cases // []<->[]<->[] // []<->[] // [] // NULL
@@ -104,7 +106,7 @@ ProjectNode *EmployeeProject2DLL::getProjectByPriority(EmployeeNode *employee, i
 	return (tProject);
 }
 
-bool EmployeeProject2DLL::isProjectsSorted(ProjectNode *head)
+bool EmployeeProject2DLL::isProjectsAreSorted(ProjectNode *head)
 {
 	while (head->next != NULL)
 	{
@@ -134,6 +136,26 @@ EmployeeNode *EmployeeProject2DLL::addNewEmployee(string employee_name)
 		temp = temp->down;
 	temp->down = new EmployeeNode(employee_name, NULL, NULL, temp->down);
 	return (temp->down);
+}
+
+void EmployeeProject2DLL::reOrderProjects(EmployeeNode *employee)
+{
+
+	ProjectNode *tProject = temp->head;
+	while (isProjectsAreSorted(temp->head) == false)
+	{
+		if (tProject->project_priority > tProject->next->project_priority)
+		{
+			// prev[tProject]next <-> prev[next]next
+			ProjectNode *next = tProject->next;
+			next->prev = tProject->prev;
+			tProject->next = next->next;
+			next->next = tProject;
+		}
+		tProject = tProject->next;
+		if (tProject == NULL)
+			tProject = temp->head;
+	}
 }
 
 
@@ -177,22 +199,8 @@ bool EmployeeProject2DLL::updateProjectPriority(string employee_name, string pro
 	// tProject = temp->head;
 	// Check the order
 	// We could use bubble-sort
-	
-	tProject = temp->head;
-	while (isProjectsSorted(temp->head) == false)
-	{
-		if (tProject->project_priority > tProject->next->project_priority)
-		{
-			// prev[tProject]next <-> prev[next]next
-			ProjectNode *next = tProject->next;
-			next->prev = tProject->prev;
-			tProject->next = next->next;
-			next->next = tProject;
-		}
-		tProject = tProject->next;
-		if (tProject == NULL)
-			tProject = temp->head;
-	}
+
+	reOrderProjects(temp);
 
 	// Above Loop might solve the problem, otherwise this type of method might be used
 	// deleteProjectByPriority(temp->head ,tProject->project_priority);
@@ -213,9 +221,11 @@ bool EmployeeProject2DLL::assignEmployeeToProject(string employee_name, string p
 		temp = addNewEmployee(employee_name); 
 
 	// employee is found, now it is time to check duplicates
+	
 	ProjectNode *tProject = getProjectByPriority(temp, project_priority);
 	if (tProject != NULL) // that means, there is a duplicate
 		return (false);
+
 	// no duplicates found, lets add in order
 	addProjectInOrder(temp, project_name, project_priority);
 }
@@ -228,10 +238,10 @@ void EmployeeProject2DLL::withdrawEmployeeFromProject(string employee_name, stri
 		pair in the data structure and 
 		priority is not a criterion for selection.
 	*/
-	EmployeeNode *temp = this->top;
-	while (temp->employee_name != employee_name)
-		temp = temp->down;
-	// deleteProject
+	EmployeeNode *emp = getEmployee(employee_name);
+	// assuming that employee is not empty
+	
+	
 }
 
 // Employee name yok ise yeni employee oluşturmak gerekiyor olabilir

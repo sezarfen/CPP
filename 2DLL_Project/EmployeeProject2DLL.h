@@ -59,9 +59,10 @@ class EmployeeProject2DLL
 		ProjectNode *getProjectByName(EmployeeNode *employee, string project_name);
 		ProjectNode *getProjectByPriority(EmployeeNode *employee, int project_priority);
 		void deleteProjectByName(EmployeeNode *employee, string project_name);
-		bool isProjectsSorted(ProjectNode *head);
+		bool isProjectsAreSorted(ProjectNode *head);
 		void addProjectInOrder(EmployeeNode *employee, string project_name, int project_priority);
 		EmployeeNode *addNewEmployee(string employee_name);
+		void reOrderProjects(EmployeeNode *employee);
 
 	public:
 		EmployeeProject2DLL( void );
