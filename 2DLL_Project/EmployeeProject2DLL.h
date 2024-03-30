@@ -63,6 +63,8 @@ class EmployeeProject2DLL
 		void addProjectInOrder(EmployeeNode *employee, string project_name, int project_priority);
 		EmployeeNode *addNewEmployee(string employee_name);
 		void reOrderProjects(EmployeeNode *employee);
+		void deleteEmployeeByName(string employee_name);
+		void printEmployeeProjects(EmployeeNode *employee, int mode);
 
 	public:
 		EmployeeProject2DLL( void );
@@ -70,7 +72,7 @@ class EmployeeProject2DLL
 		bool updateProjectPriority(string employee_name, string project_name, int project_priority);
 		bool assignEmployeeToProject(string employee_name, string project_name, int project_priority);
 		void withdrawEmployeeFromProject(string employee_name, string project_name, int &project_priority);
-		void printTheEntireList();
+		void printTheEntireList( void );
 		void printEmployeeProjects();
 		void undo();
 		void clear();

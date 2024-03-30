@@ -4,6 +4,8 @@
 // 0. reOrder the list
 // 1. addInOrder
 
+// Bazı özel caseler mevcut gibi, sample runlar kontrol edilebilir
+
 ProjectNode *getNewProjectNode(string project_name, int project_priority, ProjectNode *prev, ProjectNode *next)
 {
 	ProjectNode *projectNode = new ProjectNode;
@@ -158,6 +160,45 @@ void EmployeeProject2DLL::reOrderProjects(EmployeeNode *employee)
 	}
 }
 
+void EmployeeProject2DLL::deleteEmployeeByName(string employee_name)
+{
+	EmployeeNode *temp = this->top;
+
+	while (temp->down != NULL && temp->down->employee_name != employee_name)
+		temp = temp->down;
+	
+	EmployeeNode *toBeDeleted = temp->down;
+	temp->down = temp->down->down;
+	delete toBeDeleted;
+}
+
+void printEmployeeProjects(EmployeeNode *employee, int mode)
+{
+	// mode 1 indicates asc, mode 0 indicates desc
+	if (mode == 1)
+	{
+		ProjectNode *temp = employee->head;
+		while (temp != NULL)
+		{
+			cout << "(" << temp->project_name << ", " << temp->project_priority << ") ";
+			temp = temp->next;
+		}
+		cout << endl;
+	}
+	else if (mode == 0)
+	{
+		ProjectNode *temp = employee->tail;
+		while (temp != NULL)
+		{
+			cout << "(" << temp->project_name << ", " << temp->project_priority << ") ";
+			temp = temp->prev;
+		}
+		cout << endl;
+	}
+}
+
+
+// PUBLIC FUNCTIONS
 
 EmployeeProject2DLL::EmployeeProject2DLL( void )
 {
@@ -240,8 +281,31 @@ void EmployeeProject2DLL::withdrawEmployeeFromProject(string employee_name, stri
 	*/
 	EmployeeNode *emp = getEmployee(employee_name);
 	// assuming that employee is not empty
-	
-	
+	ProjectNode *project = getProjectByName(emp, project_name);
+	project_priority = project->project_priority;
+	deleteProjectByName(emp, project_name);
+	if (emp->head == NULL) // if there are no projects left
+		deleteEmployeeByName(emp->employee_name);
 }
 
 // Employee name yok ise yeni employee oluşturmak gerekiyor olabilir
+
+/*
+Please enter option number:
+3
+cem: (ai, 4) 
+
+The list is empty
+*/
+
+void EmployeeProject2DLL::printTheEntireList( void )
+{
+	EmployeeNode *temp = this->top;
+
+	while (temp != NULL)
+	{
+		cout << temp->employee_name << ": ";
+		printEmployeeProjects(temp, 1); // mode 1 by default
+		temp = temp->down;
+	}
+}
