@@ -21,18 +21,19 @@ struct StackNode
 	}
 };
 
-// eğer silme ise silmeme gibi gibi
+// verdiği operation'a göre logic yazarak ters işlem yapılabilir
+// assign undo edilecekse withdraw kullanmak gibi olabilir
 
 class UndoStack
 {
 	private:
 		StackNode *top;
 	public:
-		UndoStack();
-		void push();
-		/* some type */ void pop();
-		bool isEmpty();
-		void clear();
+		UndoStack( void );
+		void push(char operation, string employee_name, string project_name, int project_priority);
+		void pop(char &operation, string &employee_name, string &project_name, int &project_priority);
+		bool isEmpty( void );
+		void clear( void );
 };
 
 #endif /* end of UNDO_STACK_H */
