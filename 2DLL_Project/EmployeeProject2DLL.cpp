@@ -1,7 +1,7 @@
 #include "EmployeeProject2DLL.h"
 // priorities are ascending
 // Useful functions to write
-// 0. reOrder the list
+// 0. reOrder the x
 // 1. addInOrder
 
 // Bazı özel caseler mevcut gibi, sample runlar kontrol edilebilir
@@ -50,37 +50,42 @@ void EmployeeProject2DLL::addProjectInOrder(EmployeeNode *employee, string proje
 	}
 }
 
-
 // IT SEEMS NOT COMPLETED
-void EmployeeProject2DLL::deleteProjectByName(EmployeeNode *employee, string project_name)
+void EmployeeProject2DLL::deleteProjectByName(EmployeeNode *emp, string project_name)
 {
-	// some cases // []<->[]<->[] // []<->[] // [] // NULL
-	ProjectNode *temp = getProjectByName(employee, project_name);
+	if (emp->head == NULL)
+		return ;
+	if (emp->head != NULL && emp->head == emp->tail)
+	{
+		delete emp->head;
+		emp->head = NULL;
+		emp->tail = NULL;
+	}
+
+	if (project_name == head->project_name)
+	{
+		ProjectNode *next = head->next;
+		delete emp->head;
+		emp->head = next;
+		return ;
+	}
+	
+	ProjectNode *temp = emp->head;
+	
+
+	// first we need to find the project
+	while (temp != NULL && temp->next->project_name != project_name)
+	{
+		temp = temp->next;
+	}
 	if (temp == NULL)
 		return ;
-	else if (temp->prev == NULL && temp->next == NULL)
-	{
-		// we need to delete employee and project
-	}
-	else if (temp->next == NULL)
-	{
-		ProjectNode *temp2 = temp;
-		temp->prev->next = NULL;
-		temp2->prev = NULL; // may be not required
-		delete temp2;
-	}
-	else if (temp->prev == NULL)
-	{
-		ProjectNode *temp2 = temp;
-		employee->head = temp->next;
-		temp->prev = NULL;
-		delete temp2;
-	}
-	else
-	{
-
-	}
+	ProjectNode *newNode = temp->next->next;
+	delete temp->next;
+	temp->next = newNode;
 }
+
+
 // 2. is_there_duplicates
 
 EmployeeNode *EmployeeProject2DLL::getEmployee(string employee_name)
@@ -124,17 +129,12 @@ EmployeeNode *EmployeeProject2DLL::addNewEmployee(string employee_name)
 {
 	EmployeeNode *temp = this->top;
 
-	if (temp == NULL)
+	if (temp == NULL || employee_name.compare(temp->employee_name) < 0)
 	{
 		this->top = new EmployeeNode(employee_name, NULL, NULL, this->top);
 		return (this->top);
 	}
-	else if (employee_name.compare(temp->employee_name) > 0)
-	{
-		this->top = new EmployeeNode(employee_name, NULL, NULL, this->top);
-		return (this->top);
-	}
-	while (temp->down != NULL && employee_name.compare(temp->employee_name) > 0) // while newName is greater
+	while (temp->down != NULL && employee_name.compare(temp->employee_name) < 0) // while newName is greater
 		temp = temp->down;
 	temp->down = new EmployeeNode(employee_name, NULL, NULL, temp->down);
 	return (temp->down);
@@ -148,11 +148,21 @@ void EmployeeProject2DLL::reOrderProjects(EmployeeNode *employee)
 	{
 		if (tProject->project_priority > tProject->next->project_priority)
 		{
-			// prev[tProject]next <-> prev[next]next
+			// prev[tProject]next <-> prev[next]next->
 			ProjectNode *next = tProject->next;
+			
 			next->prev = tProject->prev;
 			tProject->next = next->next;
+			
+			if (tProject->next != NULL)
+				tProject->next->prev = tProject;
+			
 			next->next = tProject;
+
+			if (tProject->prev != NULL)
+				tProject->prev->next = next;
+			
+			tProject->prev = next;
 		}
 		tProject = tProject->next;
 		if (tProject == NULL)
@@ -336,3 +346,40 @@ void EmployeeProject2DLL::clear( void )
 
 }
 
+
+
+function()
+{
+
+	while (isOrdered)
+	{
+		ProjectNode *head = temp->head;
+		while (head->next != null)
+		{
+			if (head->pri > head->next->pri)
+			{
+				// [] <-> [ head ] <-> [ 2 ] <-> []
+				head->prev->next = head->next;
+				ProjectNode *prev = head->prev;
+				head->next->prev = prev;
+				head->next->next = head;
+				prev->next = head->next;
+				head->next = head->next->next;
+
+			}
+		}
+	}
+
+
+}
+
+
+temp = emphead;
+
+while (temp != null)
+	cout << temp->name << ": ";
+	ProjectNode *protemp = temp->head;
+	while (protemp != null)
+	{
+		cout << protemp->project_name << ", " 
+	}
