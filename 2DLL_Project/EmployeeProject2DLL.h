@@ -73,9 +73,9 @@ class EmployeeProject2DLL
 		bool assignEmployeeToProject(string employee_name, string project_name, int project_priority);
 		void withdrawEmployeeFromProject(string employee_name, string project_name, int &project_priority);
 		void printTheEntireList( void );
-		void printEmployeeProjects();
-		void undo();
-		void clear();
+		void printEmployeeProjects( void );
+		void undo( char type, string employee_name, string project_name, int project_priority );
+		void clear( void );
 };
 
 /**

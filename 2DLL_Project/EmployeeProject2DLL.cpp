@@ -309,3 +309,30 @@ void EmployeeProject2DLL::printTheEntireList( void )
 		temp = temp->down;
 	}
 }
+
+void EmployeeProject2DLL::printEmployeeProjects(string employee_name, int mode)
+{
+	// "The employee is not in the list."
+	EmployeeNode* emp = getEmployee(employee_name);
+	if (emp == NULL)
+	{
+		cout << "The employee is not in the list." << endl;
+		return ;
+	}
+	printEmployeeProjects(emp, mode);
+}
+
+void EmployeeProject2DLL::undo(char type, string employee_name, string project_name, int project_priority)
+{
+
+}
+
+/*
+This function takes no parameters, and is responsible for deallocating the
+dynamically-allocated memory of the entire 2DHLL structure.
+*/
+void EmployeeProject2DLL::clear( void )
+{
+
+}
+
