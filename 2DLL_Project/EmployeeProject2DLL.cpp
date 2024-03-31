@@ -172,7 +172,7 @@ void EmployeeProject2DLL::deleteEmployeeByName(string employee_name)
 	delete toBeDeleted;
 }
 
-void printEmployeeProjects(EmployeeNode *employee, int mode)
+void printTheProjects(EmployeeNode *employee, int mode)
 {
 	// mode 1 indicates asc, mode 0 indicates desc
 	if (mode == 1)
@@ -305,7 +305,7 @@ void EmployeeProject2DLL::printTheEntireList( void )
 	while (temp != NULL)
 	{
 		cout << temp->employee_name << ": ";
-		printEmployeeProjects(temp, 1); // mode 1 by default
+		printTheProjects(temp, 1); // mode 1 by default
 		temp = temp->down;
 	}
 }
@@ -319,7 +319,7 @@ void EmployeeProject2DLL::printEmployeeProjects(string employee_name, int mode)
 		cout << "The employee is not in the list." << endl;
 		return ;
 	}
-	printEmployeeProjects(emp, mode);
+	printTheProjects(emp, mode);
 }
 
 void EmployeeProject2DLL::undo(char type, string employee_name, string project_name, int project_priority)
