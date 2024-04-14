@@ -19,21 +19,22 @@ class DNAseq
 		~DNAseq( void ); // deletes all dynamically allocated memory and return them back to the heap
 
 		// operator overlaods   // Change return types later
-		bool operator<=( const DNAseq& rhs );
-		void operator*( const DNAseq& rhs );
-		bool operator%( const DNAseq& rhs );
-		bool operator!( void );
+		bool operator<=( const DNAseq& rhs ) const;
+		DNAseq operator*( unsigned int number ) const;
+		int operator%( Nucleotide nucleotide ) const; // without const keyword, main.cpp didn't like this definition, it might have been worked, but yes...
+		DNAseq operator!( void ) const;
 		DNAseq& operator=( const DNAseq& rhs );
-		DNAseq& operator+( const DNAseq& rhs );
-		bool operator+( const Nucleotide* nucleotide ); // check this later
-		DNAseq operator-( const DNAseq& rhs );
-		bool operator+=( const DNAseq& rhs );
-		bool operator<<( const DNAseq& rhs );
+		DNAseq operator+( const DNAseq& rhs ) const;
+		DNAseq operator+( Nucleotide nucleotide ) const;
 };
 
-ostream& operator<<(ostream& os, const DNAseq& dna)
+/* // THINK ABOUT IT LATER ALSO
+DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
 {
-	// do something
+
 }
+*/
+
+ostream& operator<<(ostream& os, const DNAseq& dna);
 
 #endif /* end of DNASEQ_H */

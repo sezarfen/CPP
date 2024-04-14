@@ -1,0 +1,7 @@
+{
+	"C_Cpp.default.compilerPath": "/usr/bin/g++",
+	"files.associations": {
+		"string_view": "cpp",
+		"iostream": "cpp"
+	}
+}
