@@ -7,6 +7,8 @@
 	Aborted (core dumped)
 */
 
+// dna6 = dna6 + dna4 + dna2*2 - dna2 + (C + dna4) + (dna6 - dna6*4): CTA  // bu kısım biraz problen oluşturuyor
+
 DNAseq::DNAseq( void )
 {
 	this->length = 0;
@@ -16,7 +18,11 @@ DNAseq::DNAseq( void )
 DNAseq::DNAseq( string sequence )
 {
 	if (sequence.length() == 0)
+	{
+		this->length = 0;
+		this->sequence = nullptr;
 		return ;
+	}
 	this->sequence = new Nucleotide[sequence.length()];
 	int i;
 	for (i = 0; i < sequence.length(); i++)
@@ -99,6 +105,12 @@ char DNAseq::getNucleotideAsChar( int index ) const
 
 bool DNAseq::operator<=( const DNAseq& rhs ) const
 {
+
+	// ONE OF THEM MIGHT BE NULL CONSIDER THAT
+	if (this->length == 0)
+		return (false);
+	if (rhs.getLength() < this->length)
+		return (false);
 	// this pointer will be lhs here
 	// when we point the first same occurance we can go forward to see it
 	int i = 0;
@@ -187,6 +199,13 @@ DNAseq& DNAseq::operator=( const DNAseq& rhs )
 DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
 {
 	// let's see if the first nucleotide is in the rhs
+
+	if (lhs.getLength() == 0 && rhs.getLength() == 0)
+		return (DNAseq());
+	else if (lhs.getLength() == 0)
+		return (DNAseq(rhs.sequenceAsString()));
+	else if (rhs.getLength() == 0)
+		return (DNAseq(lhs.sequenceAsString()));
 	
 	/*// check rhs and lhs length if they are equal to zero there might be a problem
 	if (rhs.length == 0) consider this situation with respect to + operator
@@ -246,61 +265,18 @@ DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs )
 }
 
 // OF COURSE CHECK THIS ONE XD
-DNAseq DNAseq::operator-( const DNAseq& rhs ) const
+DNAseq operator-( const DNAseq& lhs, const DNAseq& rhs )
 {
-	bool isContain = rhs <= *this;
+	bool isContain = rhs <= lhs;
 	string newSequence;
 
-	if (isContain) // remove case
+	if (isContain)
 	{
-		// add until find it, then skip the occurence and add the rest
-		int i = 0;
-		int j = 0;
-		while (i < this->length)
-		{
-			if (this->sequence[i + j] == rhs.sequence[j])
-			{
-				if (this->sequence[i] == A)
-					newSequence.push_back('A');
-				else if (this->sequence[i] == T)
-					newSequence.push_back('T');
-				else if (this->sequence[i] == G)
-					newSequence.push_back('G');
-				else // C
-					newSequence.push_back('C');
-			}
-			while (i + j < this->length && this->sequence[i + j] ==  rhs.sequence[j])
-			{
-				j++;
-			}
-			if (j == rhs.length)
-			{
-				i += j;
-				break;
-			}
-			else // if we couldn't find it
-			{
-				int k = i + j;
-				while (i < k)
-				{
-					if (this->sequence[i] == A)
-						newSequence.push_back('A');
-					else if (this->sequence[i] == T)
-						newSequence.push_back('T');
-					else if (this->sequence[i] == G)
-						newSequence.push_back('G');
-					else // C
-						newSequence.push_back('C');
-					i++; // might cause a problem, let's check this later
-				}
-				j = 0;
-			}
-			i++;
-		}
+
 	}
-	else // just return the lhs sequence (this)
+	else
 	{
-		newSequence = this->sequenceAsString();
+		newSequence = lhs.sequenceAsString();
 	}
 	return (DNAseq(newSequence));
 }

@@ -30,12 +30,12 @@ class DNAseq
 		int operator%( Nucleotide nucleotide ) const; // without const keyword, main.cpp didn't like this definition, it might have been worked, but yes...
 		DNAseq operator!( void ) const;
 		DNAseq& operator=( const DNAseq& rhs );
-		DNAseq operator-( const DNAseq& rhs) const;
 		DNAseq& operator+=(const DNAseq& rhs);
 };
 
 DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs );
 DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs );
-ostream& operator<<(ostream& os, const DNAseq& dna);
+DNAseq operator-( const DNAseq& lhs, const DNAseq& rhs );
+ostream& operator<<( ostream& os, const DNAseq& dna );
 
 #endif /* end of DNASEQ_H */
