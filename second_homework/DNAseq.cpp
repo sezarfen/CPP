@@ -46,6 +46,34 @@ DNAseq::~DNAseq( void )
 	delete[] this->sequence;
 }
 
+string DNAseq::sequenceAsString( void ) const
+{
+	string sequenceString;
+
+	for (int i = 0; i < this->length; i++)
+	{
+			if (this->sequence[i] == A)
+				sequenceString.push_back('A');
+			else if (this->sequence[i] == C)
+				sequenceString.push_back('C');
+			else if (this->sequence[i] == G)
+				sequenceString.push_back('G');
+			else
+				sequenceString.push_back('T');
+	}
+	return (sequenceString);
+}
+
+Nucleotide *DNAseq::getSequence( void ) const
+{
+	return (this->sequence);
+}
+
+int DNAseq::getLength() const
+{
+	return (this->length);
+}
+
 bool DNAseq::operator<=( const DNAseq& rhs ) const
 {
 	// this pointer will be lhs here
@@ -77,17 +105,7 @@ DNAseq DNAseq::operator*( unsigned int number ) const
 
 	for (unsigned int i = 0; i < number; i++)
 	{
-		for(int k = 0; k < this->length; k++)
-		{
-			if (this->sequence[k] == A)
-				newSequence.push_back('A');
-			else if (this->sequence[k] == C)
-				newSequence.push_back('C');
-			else if (this->sequence[k] == G)
-				newSequence.push_back('G');
-			else
-				newSequence.push_back('T');
-		}
+		newSequence += sequenceAsString();
 	}
 	return (DNAseq(newSequence)); // it might cause a segmentation fault
 }
@@ -245,4 +263,95 @@ DNAseq DNAseq::operator+( const DNAseq& rhs) const
 		}
 	}
 	return (DNAseq(newSequence));
+}
+
+DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs )
+{
+	string newSequence;
+
+	// First append the nucleotide
+	if (nucleotide == A)
+		newSequence.push_back('A');
+	else if (nucleotide == T)
+		newSequence.push_back('T');
+	else if (nucleotide == G)
+		newSequence.push_back('G');
+	else
+		newSequence.push_back('C');
+
+	// We can reach rhs private attributes from here
+	DNAseq seq(newSequence);
+	seq = seq + rhs;
+	return (seq);
+
+}
+
+DNAseq DNAseq::operator-( const DNAseq& rhs ) const
+{
+	bool isContain = rhs <= *this;
+	string newSequence;
+
+	if (isContain) // remove case
+	{
+		// add until find it, then skip the occurence and add the rest
+		int i = 0;
+		int j = 0;
+		while (i < this->length)
+		{
+			if (this->sequence[i + j] == rhs.sequence[j])
+			{
+				if (this->sequence[i] == A)
+					newSequence.push_back('A');
+				else if (this->sequence[i] == T)
+					newSequence.push_back('T');
+				else if (this->sequence[i] == G)
+					newSequence.push_back('G');
+				else // C
+					newSequence.push_back('C');
+			}
+			while (i + j < this->length && this->sequence[i + j] ==  rhs.sequence[j])
+			{
+				j++;
+			}
+			if (j == rhs.length)
+			{
+				i += j;
+				break;
+			}
+			else // if we couldn't find it
+			{
+				int k = i + j;
+				while (i < k)
+				{
+					if (this->sequence[i] == A)
+						newSequence.push_back('A');
+					else if (this->sequence[i] == T)
+						newSequence.push_back('T');
+					else if (this->sequence[i] == G)
+						newSequence.push_back('G');
+					else // C
+						newSequence.push_back('C');
+					i++; // might cause a problem, let's check this later
+				}
+				j = 0;
+			}
+			i++;
+		}
+	}
+	else // just return the lhs sequence (this)
+	{
+		newSequence = this->sequenceAsString();
+	}
+	return (DNAseq(newSequence));
+}
+
+DNAseq& DNAseq::operator+=( const DNAseq& rhs ) // check this one later
+{
+	*this = *this + rhs;
+}
+
+ostream& operator<<(ostream& os, const DNAseq& dna)
+{
+	os << dna.sequenceAsString();
+	return (os);
 }

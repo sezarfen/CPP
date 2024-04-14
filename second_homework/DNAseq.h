@@ -18,6 +18,11 @@ class DNAseq
 		DNAseq( const DNAseq& rhs ); // Deep Copy
 		~DNAseq( void ); // deletes all dynamically allocated memory and return them back to the heap
 
+		// helper member functions
+		string sequenceAsString( void ) const;
+		Nucleotide *getSequence( void ) const;
+		int getLength( void ) const;
+
 		// operator overlaods   // Change return types later
 		bool operator<=( const DNAseq& rhs ) const;
 		DNAseq operator*( unsigned int number ) const;
@@ -25,16 +30,11 @@ class DNAseq
 		DNAseq operator!( void ) const;
 		DNAseq& operator=( const DNAseq& rhs );
 		DNAseq operator+( const DNAseq& rhs ) const;
-		DNAseq operator+( Nucleotide nucleotide ) const;
+		DNAseq operator-( const DNAseq& rhs) const;
+		DNAseq& operator+=(const DNAseq& rhs);
 };
 
-/* // THINK ABOUT IT LATER ALSO
-DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
-{
-
-}
-*/
-
+DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs );
 ostream& operator<<(ostream& os, const DNAseq& dna);
 
 #endif /* end of DNASEQ_H */
