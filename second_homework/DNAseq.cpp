@@ -1,5 +1,12 @@
 #include "DNAseq.h"
 
+// core dumped cases
+// dna6 = dna6 + dna4 + dna2*2 - dna2 + (C + dna4) + (dna6 - dna6*4): TTTTTACTA
+/*
+	free(): double free detected in tcache 2
+	Aborted (core dumped)
+*/
+
 DNAseq::DNAseq( void )
 {
 	this->length = 0;
@@ -74,6 +81,22 @@ int DNAseq::getLength() const
 	return (this->length);
 }
 
+char DNAseq::getNucleotideAsChar( int index ) const
+{
+	// it assumes the index is exists
+	switch (this->sequence[index])
+	{
+	case A:
+		return ('A');
+	case T:
+		return ('T');
+	case G:
+		return ('G');
+	default:
+		return ('C');
+	}
+}
+
 bool DNAseq::operator<=( const DNAseq& rhs ) const
 {
 	// this pointer will be lhs here
@@ -144,7 +167,7 @@ DNAseq DNAseq::operator!( void ) const
 DNAseq& DNAseq::operator=( const DNAseq& rhs )
 {
 	if (this == &rhs) // they passed the same object
-		return ;
+		return *this;
 	
 	// If our sequence is already exists.
 	if (this->sequence != nullptr)
@@ -158,109 +181,46 @@ DNAseq& DNAseq::operator=( const DNAseq& rhs )
 	{
 		this->sequence[i] = rhs.sequence[i];
 	}
+	return (*this);
 }
 
-DNAseq DNAseq::operator+( const DNAseq& rhs) const
+DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
 {
 	// let's see if the first nucleotide is in the rhs
 	
-	/*
+	/*// check rhs and lhs length if they are equal to zero there might be a problem
 	if (rhs.length == 0) consider this situation with respect to + operator
 		return (DNAseq())
 	*/
-	
-	Nucleotide toFind = rhs.sequence[0];
+
+	Nucleotide* lsequence = lhs.getSequence();
+	Nucleotide* rsequence = rhs.getSequence();
+	int left_len = lhs.getLength();
 	bool isContain = false;
-	for (int i = 0; i < this->length; i++)
+
+	for (int i = 0; i < left_len; i++)
 	{
-		if (toFind == this->sequence[i])
+		if (rsequence[0] == lsequence[i])
 			isContain = true;
 	}
-	
+
 	string newSequence;
 
-	// first case (a)
 	if (isContain)
 	{
 		int i = 0;
-		while (this->sequence[i] != toFind)
-		{ // add untill first occurence
-			if (this->sequence[i] == A)
-				newSequence.push_back('A');
-			else if (this->sequence[i] == T)
-				newSequence.push_back('T');
-			else if (this->sequence[i] == G)
-				newSequence.push_back('G');
-			else // C
-				newSequence.push_back('C');
-			i++;
-		}
-		
-		// add that occurence
-		if (this->sequence[i] == A)
-			newSequence.push_back('A');
-		else if (this->sequence[i] == T)
-			newSequence.push_back('T');
-		else if (this->sequence[i] == G)
-			newSequence.push_back('G');
-		else // C
-			newSequence.push_back('C');
-		i++;
-		
-		
-		// insert just after first occurence
-		for (int k = 0; k < rhs.length; k++)
-		{
-			if (rhs.sequence[i] == A)
-				newSequence.push_back('A');
-			else if (rhs.sequence[i] == T)
-				newSequence.push_back('T');
-			else if (rhs.sequence[i] == G)
-				newSequence.push_back('G');
-			else // C
-				newSequence.push_back('C');
-		}
-		
-		// add the rest of the lhs
-		while (i < this->length)
-		{
-			if (this->sequence[i] == A)
-				newSequence.push_back('A');
-			else if (this->sequence[i] == T)
-				newSequence.push_back('T');
-			else if (this->sequence[i] == G)
-				newSequence.push_back('G');
-			else // C
-				newSequence.push_back('C');
-			i++;
-		}
-
+		while (lsequence[i] != rsequence[0])
+			newSequence.push_back(lhs.getNucleotideAsChar(i++));
+		// first occurance, lets also add this one
+		newSequence.push_back(lhs.getNucleotideAsChar(i++));
+		newSequence += rhs.sequenceAsString();
+		while (i < left_len)
+			newSequence.push_back(lhs.getNucleotideAsChar(i++));
 	}
-	else // second case (b)
+	else // we just need to print lhs + rhs
 	{
-		// concatination operation
-		for (int i = 0; i < this->length; i++) // adding lhs
-		{			
-			if (this->sequence[i] == A)
-				newSequence.push_back('A');
-			else if (this->sequence[i] == T)
-				newSequence.push_back('T');
-			else if (this->sequence[i] == G)
-				newSequence.push_back('G');
-			else // C
-				newSequence.push_back('C');
-		}
-		for (int i = 0; i < this->length; i++) // adding rhs
-		{			
-			if (rhs.sequence[i] == A)
-				newSequence.push_back('A');
-			else if (rhs.sequence[i] == T)
-				newSequence.push_back('T');
-			else if (rhs.sequence[i] == G)
-				newSequence.push_back('G');
-			else // C
-				newSequence.push_back('C');
-		}
+		newSequence += lhs.sequenceAsString();
+		newSequence += rhs.sequenceAsString();
 	}
 	return (DNAseq(newSequence));
 }
@@ -279,13 +239,13 @@ DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs )
 	else
 		newSequence.push_back('C');
 
-	// We can reach rhs private attributes from here
-	DNAseq seq(newSequence);
-	seq = seq + rhs;
-	return (seq);
+	// We can 't reach rhs private attributes from here
+	newSequence += rhs.sequenceAsString();
+	return (DNAseq(newSequence));
 
 }
 
+// OF COURSE CHECK THIS ONE XD
 DNAseq DNAseq::operator-( const DNAseq& rhs ) const
 {
 	bool isContain = rhs <= *this;
@@ -348,6 +308,7 @@ DNAseq DNAseq::operator-( const DNAseq& rhs ) const
 DNAseq& DNAseq::operator+=( const DNAseq& rhs ) // check this one later
 {
 	*this = *this + rhs;
+	return (*this);
 }
 
 ostream& operator<<(ostream& os, const DNAseq& dna)
