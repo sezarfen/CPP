@@ -65,14 +65,14 @@ string DNAseq::sequenceAsString( void ) const
 
 	for (int i = 0; i < this->length; i++)
 	{
-			if (this->sequence[i] == A)
-				sequenceString.push_back('A');
-			else if (this->sequence[i] == C)
-				sequenceString.push_back('C');
-			else if (this->sequence[i] == G)
-				sequenceString.push_back('G');
-			else
-				sequenceString.push_back('T');
+		if (this->sequence[i] == A)
+			sequenceString.push_back('A');
+		else if (this->sequence[i] == C)
+			sequenceString.push_back('C');
+		else if (this->sequence[i] == G)
+			sequenceString.push_back('G');
+		else
+			sequenceString.push_back('T');
 	}
 	return (sequenceString);
 }
@@ -108,7 +108,7 @@ bool DNAseq::operator<=( const DNAseq& rhs ) const
 
 	// ONE OF THEM MIGHT BE NULL CONSIDER THAT
 	if (this->length == 0)
-		return (false);
+		return (true);
 	if (rhs.getLength() < this->length)
 		return (false);
 	// this pointer will be lhs here
@@ -118,7 +118,7 @@ bool DNAseq::operator<=( const DNAseq& rhs ) const
 	while (i < rhs.length)
 	{
 		while (i < rhs.length && rhs.sequence[i + j] == this->sequence[j])
-		{ 
+		{
 			j++;
 		}
 		// if this subsequence is totally equal j and this->length must be equal to each other
@@ -127,7 +127,7 @@ bool DNAseq::operator<=( const DNAseq& rhs ) const
 			i += j;
 			j = 0;
 		}
-		else
+		else // if j == this->length
 			return (true);
 		i++;
 	}
@@ -136,13 +136,15 @@ bool DNAseq::operator<=( const DNAseq& rhs ) const
 
 DNAseq DNAseq::operator*( unsigned int number ) const
 {
-	string newSequence;
+	if (this->length == 0 || number <= 0)
+		return (DNAseq());
 
+	string newSequence;
 	for (unsigned int i = 0; i < number; i++)
 	{
 		newSequence += sequenceAsString();
 	}
-	return (DNAseq(newSequence)); // it might cause a segmentation fault
+	return (DNAseq(newSequence));
 }
 
 int DNAseq::operator%( Nucleotide nucleotide ) const
@@ -176,7 +178,7 @@ DNAseq DNAseq::operator!( void ) const
 }
 
 // copy assignment operator
-DNAseq& DNAseq::operator=( const DNAseq& rhs )
+DNAseq & DNAseq::operator=( const DNAseq& rhs )
 {
 	if (this == &rhs) // they passed the same object
 		return *this;
@@ -215,12 +217,16 @@ DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
 	Nucleotide* lsequence = lhs.getSequence();
 	Nucleotide* rsequence = rhs.getSequence();
 	int left_len = lhs.getLength();
+	
 	bool isContain = false;
 
 	for (int i = 0; i < left_len; i++)
 	{
 		if (rsequence[0] == lsequence[i])
+		{
 			isContain = true;
+			break;
+		}
 	}
 
 	string newSequence;
@@ -229,12 +235,19 @@ DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs )
 	{
 		int i = 0;
 		while (lsequence[i] != rsequence[0])
-			newSequence.push_back(lhs.getNucleotideAsChar(i++));
+		{
+			newSequence.push_back(lhs.getNucleotideAsChar(i));
+			i++;
+		}
 		// first occurance, lets also add this one
-		newSequence.push_back(lhs.getNucleotideAsChar(i++));
+		newSequence.push_back(lhs.getNucleotideAsChar(i));
+		i++;
 		newSequence += rhs.sequenceAsString();
 		while (i < left_len)
-			newSequence.push_back(lhs.getNucleotideAsChar(i++));
+		{
+			newSequence.push_back(lhs.getNucleotideAsChar(i));
+			i++;
+		}
 	}
 	else // we just need to print lhs + rhs
 	{
@@ -272,7 +285,6 @@ DNAseq operator-( const DNAseq& lhs, const DNAseq& rhs )
 
 	if (isContain)
 	{
-
 	}
 	else
 	{

@@ -10,7 +10,7 @@ class DNAseq
 {
 	private:
 		int length; // represents the # of nucleotides in the DNA sequence.
-		Nucleotide *sequence;
+		Nucleotide* sequence;
 
 	public:
 		DNAseq( void );
