@@ -2,6 +2,7 @@
 # define DNASEQ_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 enum Nucleotide {A, C, G, T};
@@ -25,7 +26,6 @@ class DNAseq
 		char getNucleotideAsChar( int index ) const;
 
 		// operator overlaods   // Change return types later
-		bool operator<=( const DNAseq& rhs ) const;
 		DNAseq operator*( unsigned int number ) const;
 		int operator%( Nucleotide nucleotide ) const; // without const keyword, main.cpp didn't like this definition, it might have been worked, but yes...
 		DNAseq operator!( void ) const;
@@ -33,6 +33,7 @@ class DNAseq
 		DNAseq& operator+=(const DNAseq& rhs);
 };
 
+bool operator<=( const DNAseq& lhs, const DNAseq& rhs );
 DNAseq operator+( const DNAseq& lhs, const DNAseq& rhs );
 DNAseq operator+( Nucleotide nucleotide, const DNAseq& rhs );
 DNAseq operator-( const DNAseq& lhs, const DNAseq& rhs );
