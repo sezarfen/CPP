@@ -30,6 +30,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=( const ShrubberyCreation
 	// what can be done here?
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ){
+	this->_target = target;
+}
+
+
 /*
               _{\ _{\{\/}/}/}__
              {/{/\}{/{/\}(\}{/\} _

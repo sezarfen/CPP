@@ -29,3 +29,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=( const PresidentialPar
 	}
 	// what can be done here?
 }
+
+PresidentialPardonForm::PresidentialPardonForm( std::string target ){
+	this->_target = target;
+}

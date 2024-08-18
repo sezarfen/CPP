@@ -5,14 +5,19 @@
 
 class ShrubberyCreationForm : public AForm
 {
-	public:
-		ShrubberyCreationForm( void );
-		~ShrubberyCreationForm( void );
-		ShrubberyCreationForm( const ShrubberyCreationForm& other );
+	private:
+		std::string _target;
 
-		ShrubberyCreationForm( const AForm& target );
+		ShrubberyCreationForm( void );
+		ShrubberyCreationForm( const ShrubberyCreationForm& other );
+	public:
+		~ShrubberyCreationForm( void );
+
+		ShrubberyCreationForm( std::string target );
 
 		ShrubberyCreationForm& operator=( const ShrubberyCreationForm& rhs );
+
+		void execute(Bureaucrat const & executor) const;
 };
 
 # endif /* end of SHRUBBERYCREATIONFORM_HPP */

@@ -29,3 +29,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 	}
 	// what can be done here?
 }
+
+RobotomyRequestForm::RobotomyRequestForm( std::string target ){
+	this->_target = target;
+}

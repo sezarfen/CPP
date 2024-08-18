@@ -25,6 +25,8 @@ class AForm{
 
         virtual void beSigned( Bureaucrat& bur );
 
+        virtual void execute(Bureaucrat const & executor) const;
+
         class GradeTooHighException : public std::exception {
             virtual const char* what() const throw(); // newer versions uses noexcept except for throw()
         };
